@@ -2,101 +2,488 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>WoW Midnight Hub FR</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WoW: Midnight Hub FR</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0e1a;color:#d4c5a0;font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6;min-height:100vh}
-a{color:#f0c040}
-.W{max-width:1400px;margin:0 auto;padding:0 20px}
-header{background:linear-gradient(135deg,#0a0e1a,#1a1040,#0a0e1a);border-bottom:2px solid #f0c040;padding:24px 0;text-align:center}
-header h1{font-size:2.2em;color:#f0c040}
-header p{color:#8b949e;margin-top:4px}
-.SB{display:flex;justify-content:center;gap:20px;padding:8px 0;flex-wrap:wrap}
-.SI{text-align:center}.SI b{font-size:1.6em;color:#f0c040;display:block}.SI small{color:#8b949e}
-nav{display:flex;flex-wrap:wrap;gap:3px;padding:12px 0;justify-content:center;border-bottom:1px solid #21262d}
-nav span{background:#161b22;color:#d4c5a0;border:1px solid #30363d;padding:7px 13px;cursor:pointer;border-radius:5px 5px 0 0;font-size:.85em;user-select:none}
-nav span:hover{background:#21262d;color:#f0c040}
-nav span.on{background:#f0c040;color:#0a0e1a;font-weight:700}
-section{display:none;padding:20px 0}
-section.on{display:block}
-.hb{background:rgba(240,192,64,.06);border:1px solid #30363d;border-radius:10px;padding:18px;margin:12px 0;text-align:center}
-.hb h2{color:#f0c040;font-size:1.4em}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;padding:12px 0}
-.card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:12px;cursor:pointer;transition:.2s}
-.card:hover{border-color:#f0c040;transform:translateY(-2px)}
-.card h3{font-size:1em;margin-bottom:3px}
-.card small{color:#8b949e;font-size:.75em}
-.panel{display:none;background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;margin:12px 0}
-.panel.on{display:block}
-.tabs{display:flex;gap:5px;margin-bottom:12px;flex-wrap:wrap}
-.tabs span{background:#21262d;color:#d4c5a0;border:1px solid #30363d;padding:5px 11px;cursor:pointer;border-radius:4px;font-size:.82em}
-.tabs span:hover{border-color:#f0c040;color:#f0c040}
-.tabs span.on{background:#f0c040;color:#0a0e1a;font-weight:700}
-.guide{display:none;font-size:.87em;line-height:1.6;color:#d4c5a0}
-.guide.on{display:block}
-.back{background:#21262d;color:#f0c040;border:1px solid #f0c040;padding:6px 12px;cursor:pointer;border-radius:4px;margin-bottom:12px;font-size:.85em;display:inline-block}
-.back:hover{background:#f0c040;color:#0a0e1a}
-.box{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;margin:8px 0}
-.box h3{color:#f0c040;margin-bottom:6px;font-size:1em}
-.box p,.box .ct{color:#d4c5a0;font-size:.87em;line-height:1.6}
-.dg{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
-.rg{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:10px}
-.tag{display:inline-block;background:#f0c040;color:#0a0e1a;padding:1px 5px;border-radius:3px;font-size:.65em;font-weight:700;margin-left:3px}
-footer{text-align:center;padding:20px 0;border-top:1px solid #21262d;color:#484f58;font-size:.75em;margin-top:20px}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0a0e1a; color: #d4c5a0; font-family: 'Segoe UI', sans-serif; min-height: 100vh; }
+  header { background: linear-gradient(135deg, #1a0a2e 0%, #0a0e1a 100%); border-bottom: 1px solid #2d1f5e; padding: 20px 24px; display: flex; align-items: center; gap: 16px; }
+  header h1 { font-size: 1.5em; color: #c8a8ff; font-weight: 700; }
+  header p { font-size: 0.85em; color: #8b7aa0; margin-top: 2px; }
+  .badge { background: #2d1f5e; color: #a78bfa; padding: 4px 10px; border-radius: 12px; font-size: 0.75em; }
+  nav { background: #0d1122; border-bottom: 1px solid #1e2540; display: flex; gap: 4px; padding: 0 16px; overflow-x: auto; }
+  nav button { background: none; border: none; color: #8b7aa0; padding: 14px 18px; cursor: pointer; font-size: 0.9em; border-bottom: 3px solid transparent; white-space: nowrap; transition: all 0.2s; }
+  nav button:hover { color: #d4c5a0; }
+  nav button.active { color: #c8a8ff; border-bottom-color: #7c3aed; }
+  section { display: none; padding: 24px; max-width: 1200px; margin: 0 auto; }
+  section.on { display: block; }
+  .cls-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+  .cls-btn { background: #111827; border: 1px solid #2d3748; border-radius: 6px; padding: 6px 14px; cursor: pointer; font-size: 0.85em; font-weight: 600; transition: all 0.2s; }
+  .cls-btn:hover, .cls-btn.active { background: #1e2740; border-color: currentColor; }
+  .cls-panel { display: none; }
+  .spec-block { background: #111827; border-radius: 8px; padding: 16px; margin-bottom: 14px; }
+  .spec-block h3 { margin-bottom: 8px; font-size: 1em; }
+  .spec-block p { color: #d4c5a0; line-height: 1.7; font-size: 0.9em; }
+  .card { background: #111827; border-radius: 8px; padding: 16px; margin-bottom: 14px; }
+  .card h3 { margin-bottom: 8px; font-size: 1em; }
+  .card p { color: #d4c5a0; line-height: 1.6; font-size: 0.9em; }
+  .news-meta { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; gap: 12px; }
+  .news-date { color: #6b7280; font-size: 0.8em; white-space: nowrap; }
+  a.src-link { color: #60a5fa; font-size: 0.85em; display: inline-block; margin-top: 8px; text-decoration: none; }
+  a.src-link:hover { text-decoration: underline; }
+  h2.section-title { color: #c8a8ff; font-size: 1.2em; margin-bottom: 16px; border-bottom: 1px solid #2d1f5e; padding-bottom: 10px; }
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 14px; }
+  footer { text-align: center; padding: 24px; color: #4a4060; font-size: 0.8em; border-top: 1px solid #1e2540; margin-top: 32px; }
 </style>
 </head>
 <body>
-<header><div class="W">
-<h1>WoW: Midnight Hub FR</h1>
-<p>Guide complet en fran&#231;ais &mdash; Patch 12.0.1</p>
-<div class="SB">
-<div class="SI"><b>13</b><small>Classes</small></div>
-<div class="SI"><b>39</b><small>Specs</small></div>
-<div class="SI"><b>8</b><small>Donjons</small></div>
-<div class="SI"><b>3</b><small>Raids</small></div>
-</div>
-</div></header>
-<div class="W">
+<header>
+  <div>
+    <h1>âï¸ WoW: Midnight Hub FR</h1>
+    <p>Guides complets pour l'extension Midnight â Saison 1</p>
+  </div>
+  <span class="badge">Midnight 12.0</span>
+</header>
+
 <nav>
-<span class="on" onclick="T('cls',this)">Classes</span>
-<span onclick="T('djn',this)">Donjons</span>
-<span onclick="T('rds',this)">Raids</span>
-<span onclick="T('pvp',this)">PvP</span>
-<span onclick="T('lvl',this)">Leveling</span>
-<span onclick="T('sys',this)">Syst&#232;mes</span>
-<span onclick="T('lor',this)">Lore</span>
-<span onclick="T('news',this)">Actus</span>
-<span onclick="T('s1',this)">Saison 1</span>
+  <button class="active" onclick="showTab('cls')">Classes</button>
+  <button onclick="showTab('dnj')">Donjons</button>
+  <button onclick="showTab('raid')">Raids</button>
+  <button onclick="showTab('other')">Midnight</button>
+  <button onclick="showTab('news')">ActualitÃ©s</button>
 </nav>
 
+<!-- CLASSES TAB - visible by default -->
 <section id="cls" class="on">
-<div class="hb"><h2>Guides de Classes</h2><p>Cliquez sur une classe</p></div>
-<div id="cg" class="grid"><div class="card" onclick="OC('death-knight')" style="border-left:3px solid #C41F3B"><h3 style="color:#C41F3B">💀 Chevalier de la mort</h3><small>Sang &middot; Givre &middot; Impie</small></div><div class="card" onclick="OC('demon-hunter')" style="border-left:3px solid #A330C9"><h3 style="color:#A330C9">👁️ Chasseur de démons</h3><small>Dévastation &middot; Vengeance</small></div><div class="card" onclick="OC('druid')" style="border-left:3px solid #FF7D0A"><h3 style="color:#FF7D0A">🌿 Druide</h3><small>Équilibre &middot; Farouche &middot; Gardien &middot; Restauration</small></div><div class="card" onclick="OC('evoker')" style="border-left:3px solid #33937F"><h3 style="color:#33937F">🐉 Évocateur</h3><small>Dévastation &middot; Préservation &middot; Augmentation</small></div><div class="card" onclick="OC('hunter')" style="border-left:3px solid #ABD473"><h3 style="color:#ABD473">🏹 Chasseur</h3><small>Maîtrise des bêtes &middot; Précision &middot; Survie</small></div><div class="card" onclick="OC('mage')" style="border-left:3px solid #69CCF0"><h3 style="color:#69CCF0">❄️ Mage</h3><small>Arcane &middot; Feu &middot; Givre</small></div><div class="card" onclick="OC('monk')" style="border-left:3px solid #00FF96"><h3 style="color:#00FF96">☯️ Moine</h3><small>Maître brasseur &middot; Tisse-brume &middot; Marche-vent</small></div><div class="card" onclick="OC('paladin')" style="border-left:3px solid #F58CBA"><h3 style="color:#F58CBA">🛡️ Paladin</h3><small>Sacré &middot; Protection &middot; Vindicte</small></div><div class="card" onclick="OC('priest')" style="border-left:3px solid #FFFFFF"><h3 style="color:#FFFFFF">✨ Prêtre</h3><small>Discipline &middot; Sacré &middot; Ombre</small></div><div class="card" onclick="OC('rogue')" style="border-left:3px solid #FFF569"><h3 style="color:#FFF569">🗡️ Voleur</h3><small>Assassinat &middot; Hors-la-loi &middot; Finesse</small></div><div class="card" onclick="OC('shaman')" style="border-left:3px solid #0070DE"><h3 style="color:#0070DE">⚡ Chaman</h3><small>Élémentaire &middot; Amélioration &middot; Restauration</small></div><div class="card" onclick="OC('warlock')" style="border-left:3px solid #9482C9"><h3 style="color:#9482C9">🔥 Démoniste</h3><small>Affliction &middot; Démonologie &middot; Destruction</small></div><div class="card" onclick="OC('warrior')" style="border-left:3px solid #C79C6E"><h3 style="color:#C79C6E">⚔️ Guerrier</h3><small>Armes &middot; Fureur &middot; Protection</small></div></div><div id="p-death-knight" class="panel"><span class="back" onclick="XC('death-knight')">&larr; Retour</span><h2 style="color:#C41F3B;margin:0 0 10px">💀 Chevalier de la mort</h2><div class="tabs"><span class="on" onclick="SS('death-knight','blood',this)">Sang</span><span onclick="SS('death-knight','frost',this)">Givre</span><span onclick="SS('death-knight','unholy',this)">Impie</span></div><div id="g-death-knight-blood" class="guide on">Le guide couvre la spécialisation Tank du Chevalier de la Mort Sang dans la &quot;Saison 1 de Minuit&quot; pour World of Warcraft, détaillant son gameplay, ses points forts, ses faiblesses et diverses ressources utiles. Les sections clés comprennent un aperçu du style de jeu, les stratégies de rotation, les compositions de talents, le meilleur équipement disponible, les consommables et les conseils de montée en niveau. Le guide met en avant le style de jeu réactif du Chevalier de la Mort Sang, axé sur l'auto-sustain, la gestion de la Puissance Runique et les différents cooldowns de soins. Les changements mis à jour dans le patch simplifient les mécaniques et les capacités pour plus de clarté, accompagnés de recommandations sur les statistiques optimales, les professions et les choix de race pour les joueurs.</div><div id="g-death-knight-frost" class="guide">Le Guide DPS du Death Knight Frost pour la Saison 1 de Midnight fournit des informations complètes et des conseils pour maîtriser cette spécialisation dans World of Warcraft. Il comprend des sections détaillées sur :<br><br>1. Présentation : Met en avant les points forts des Death Knights Frost, tels que de solides Dégâts en cleave et une rotation simple à prendre en main. Les points faibles incluent une vulnérabilité aux temps d'arrêt et des Dégâts limités sur une cible unique.<br>2. Mécaniques de jeu : Aborde les builds de talents, les priorités de rotation et les priorités de statistiques, en mettant l'accent sur le Coup Critique, la Maîtrise, la Hâte et la Polyvalence.<br>3. Équipement : Recommandations pour le meilleur équipement disponible (best-in-slot) et les professions d'artisanat pour améliorer les performances.<br>4. Changements de talents : Modifications notables apportées </div><div id="g-death-knight-unholy" class="guide">Le guide du Chevalier de la Mort Impie pour Midnight 12.0.1 détaille les éléments clés pour les joueurs maîtrisant cette spécialisation dans le contenu JcE. Il comprend des sections sur les Builds de Talents, la Rotation, l'Équipement Idéal et les Consommables. Le guide couvre des styles de jeu hybrides centrés sur l'application des maladies et la gestion des familiers, en mettant l'accent sur un fort potentiel de dégâts en rafale. Les joueurs sont encouragés à prioriser des sorts comme Sudden Doom et à maintenir leurs temps de recharge pour un rendement optimal en termes de Dégâts. Le guide présente également les points forts (comme les dégâts en rafale et la résistance) et les points faibles (comme la faible mobilité) de la spécialisation. Les changements majeurs apportés dans Midnight incluent des modifications aux sorts, renforçant la nécessité d'ajustements stratégiques dans les sty</div></div><div id="p-demon-hunter" class="panel"><span class="back" onclick="XC('demon-hunter')">&larr; Retour</span><h2 style="color:#A330C9;margin:0 0 10px">👁️ Chasseur de démons</h2><div class="tabs"><span class="on" onclick="SS('demon-hunter','havoc',this)">Dévastation</span><span onclick="SS('demon-hunter','vengeance',this)">Vengeance</span></div><div id="g-demon-hunter-havoc" class="guide on">Le guide fournit des informations détaillées sur le Chasseur de démons Havoc pour la Saison 1 de Minuit dans World of Warcraft, en se concentrant sur des aspects clés tels que les builds, les rotations et les capacités. Les points forts incluent les forces de la classe (haute mobilité, auto-soins, DPS constant) et ses faiblesses (génération de menace, difficultés avec les dégâts de zone). Les sections principales comprennent : 1. Présentation de la spécialisation ; 2. Builds de talents avec des liens vers des ressources ; 3. Recommandations de rotation ; 4. Équipement optimal et consommables ; 5. Changements apportés par le patch, avec des détails sur les capacités supprimées et les nouvelles capacités. Le guide aborde également les talents héroïques, les stratégies d'équipement, ainsi qu'un aperçu des meilleures races pour cette classe.</div><div id="g-demon-hunter-vengeance" class="guide">Le Guide du Tank Demon Hunter Vengeance pour la Saison 1 de Midnight fournit des informations approfondies sur la maîtrise de cette spécialisation de Tank dans le contenu JcE, incluant les mécaniques clés, les rotations, les talents et les stratégies d'équipement. Il met en évidence les points forts et les points faibles de la spécialisation, tels que de puissants Dégâts en rafale et une auto-régénération efficace, ainsi que la nécessité de gérer habilement les défensives. Les principales mises à jour du Patch 12.0.1 comprennent des compétences supprimées, de nouvelles mécaniques et des ajustements de gameplay qui améliorent le style de jeu global. Il est conseillé aux joueurs de prioriser les statistiques et les consommables, avec des suggestions d'options BiS (Meilleur en Emplacement). Le guide inclut également des recommandations sur les meilleures races et professions pour les Demon </div></div><div id="p-druid" class="panel"><span class="back" onclick="XC('druid')">&larr; Retour</span><h2 style="color:#FF7D0A;margin:0 0 10px">🌿 Druide</h2><div class="tabs"><span class="on" onclick="SS('druid','balance',this)">Équilibre</span><span onclick="SS('druid','feral',this)">Farouche</span><span onclick="SS('druid','guardian',this)">Gardien</span><span onclick="SS('druid','restoration',this)">Restauration</span></div><div id="g-druid-balance" class="guide on">Le contenu est un guide complet pour les Druides Balance dans World of Warcraft : Midnight Saison 1. Les sections clés comprennent :<br><br>1. Aperçu du Patch : Présente la version du guide.<br>2. Sommaire : Liste les différents aspects tels que la Cheat Sheet, les Builds de Talents, la Rotation, l'Équipement Idéal (Best-in-Slot), et les Consommables pour le PvE.<br>3. Bases de la Classe : Aborde le style de jeu du Druide Balance, ses points forts (dégâts multi-cibles soutenus élevés, utilité) et ses faiblesses (longs temps de montée en puissance, talents passifs).<br>4. Cheat Sheet et Builds : Propose des références rapides pour les builds optimaux et la stratégie de jeu.<br>5. Changements dans Midnight : Détaille les suppressions et ajouts de compétences qui affectent significativement le gameplay.<br>6. Talents Héroïques : Explique les mécaniques de Keeper of the Grove et d</div><div id="g-druid-feral" class="guide">Guide DPS Druide Féral pour la Saison 1 de Midnight<br><br>Le Guide DPS Druide Féral pour la Saison 1 de Midnight fournit des stratégies complètes pour maîtriser la spécialisation Druide Féral dans World of Warcraft, en se concentrant sur le contenu JcE. Les sections principales incluent :<br><br>1. Présentation du Druide Féral - Met l'accent sur la métamorphose, de solides capacités de Dégâts de zone (AoE) et sur cible unique, ainsi que la dépendance aux Points de Combo et à l'Énergie.<br><br>2. Points forts et points faibles - Liste les points forts du Féral tels que ses puissantes capacités AoE, sa mobilité et ses soins secondaires ; les points faibles incluent la dépendance à des builds spécifiques et la concurrence d'autres spécialisations.<br><br>3. Builds et Talents recommandés - Fournit des liens vers des builds de talents, les priorités de statistiques (Maîtrise &gt; Hâte &gt; Critique = Polyvale</div><div id="g-druid-guardian" class="guide">Le Guide du Tank Druide Gardien - Midnight fournit des informations détaillées pour les joueurs souhaitant maîtriser la spécialisation Druide Gardien dans World of Warcraft, notamment dans le contexte du contenu JcE durant la mise à jour Saison 1 de Midnight. Les sections clés du guide comprennent :<br><br>1. Aperçu et Bases : Met en avant le Druide Gardien comme un Tank métamorphe portant du cuir, doté d'une forte réduction passive des Dégâts et d'une grande mobilité. Il est accessible aux nouveaux joueurs grâce à son style de jeu simple et intuitif.<br><br>2. Points Forts et Points Faibles : Liste les points forts tels qu'une solide réduction des Dégâts et une survivabilité constante, ainsi que les points faibles incluant un contrôle des foules limité et des difficultés initiales de génération de menace.<br><br>3. Changements du Patch : Détaille les modifications apportées aux capacités </div><div id="g-druid-restoration" class="guide">Le Guide du Druide Restauration Soigneur pour la Saison 1 de Midnight fournit des informations essentielles pour maîtriser le Druide Restauration aussi bien dans les donjons que dans les raids. Les éléments clés comprennent une présentation générale de la spécialisation, ses points forts (tels que des temps de recharge impactants et une grande mobilité) et ses points faibles (comme la nécessité d'un timing précis). Le guide met l'accent sur les tâches de maintenance importantes, la coordination des temps de recharge et les stratégies de gestion du mana. Il décrit les priorités de statistiques principales, les builds de talents recommandés et les suggestions d'équipement tout au long de la saison. Des sections sont dédiées aux aperçus de la saison, aux meilleures recommandations d'équipement, ainsi qu'aux capacités détaillées avec des liens vers les ressources pertinentes. Le guide met ég</div></div><div id="p-evoker" class="panel"><span class="back" onclick="XC('evoker')">&larr; Retour</span><h2 style="color:#33937F;margin:0 0 10px">🐉 Évocateur</h2><div class="tabs"><span class="on" onclick="SS('evoker','devastation',this)">Dévastation</span><span onclick="SS('evoker','preservation',this)">Préservation</span><span onclick="SS('evoker','augmentation',this)">Augmentation</span></div><div id="g-evoker-devastation" class="guide on">Les Evokers Dévastation sont des DPS à distance spécialisés dans la magie du feu et de l'arcane. Ils canalisent de puissants sorts amplifiés pour infliger des Dégâts en rafale massifs. Leurs points forts incluent de solides fenêtres de burst, un bon cleave, ainsi qu'une utilité Raid unique grâce à Rescue et Blessing of the Bronze. Leurs faiblesses comprennent une portée limitée (25 mètres), un niveau de maîtrise élevé lié au timing des sorts amplifiés, et une vulnérabilité durant les canalisations. Compétences clés : Fire Breath, Eternity Surge, Disintegrate, Living Flame. Statistiques prioritaires : Hâte &gt; Coup Critique &gt; Maîtrise &gt; Polyvalence.</div><div id="g-evoker-preservation" class="guide">Les Evokers Preservation sont des soigneurs qui utilisent des sorts renforcés et de la magie temporelle. Ils excellent dans les soins en rafale grâce à Dream Breath et Spiritbloom. Leurs points forts incluent des soins en rafale exceptionnels, une utilité unique avec Rescue et Time Spiral, ainsi qu'une bonne contribution aux Dégâts. Leurs points faibles incluent une portée réduite (25 mètres), la complexité de la gestion des sorts renforcés, et des difficultés de gestion du mana. Capacités clés : Dream Breath, Spiritbloom, Echo, Reversion. Statistiques prioritaires : Intelligence &gt; Hâte &gt; Coup Critique &gt; Polyvalence &gt; Maîtrise.</div><div id="g-evoker-augmentation" class="guide">Les Évocateurs Augmentation sont une spécialisation DPS de soutien qui amplifie les dégâts des alliés plutôt que d'infliger directement les leurs. Ils renforcent les membres du groupe avec Ebon Might et Prescience. Leurs points forts incluent une amplification unique des dégâts de groupe, une forte utilité, et des buffs à l'échelle du Raid. Leurs points faibles incluent des DPS personnels faibles, une efficacité dépendante de la composition du groupe, et une complexité dans le suivi des buffs sur les alliés. Compétences clés : Ebon Might, Prescience, Eruption, Upheaval. Statistiques prioritaires : Maîtrise &gt; Hâte &gt; Coup Critique &gt; Polyvalence.</div></div><div id="p-hunter" class="panel"><span class="back" onclick="XC('hunter')">&larr; Retour</span><h2 style="color:#ABD473;margin:0 0 10px">🏹 Chasseur</h2><div class="tabs"><span class="on" onclick="SS('hunter','beast-mastery',this)">Maîtrise des bêtes</span><span onclick="SS('hunter','marksmanship',this)">Précision</span><span onclick="SS('hunter','survival',this)">Survie</span></div><div id="g-hunter-beast-mastery" class="guide on">APERÇU<br>Le Chasseur Maîtrise des bêtes est une spécialisation capable qui utilise une combinaison de différents compagnons animaux pour dévaster ses ennemis, remplissant ainsi un fantasme de classe unique et bien défini. Si vous recherchez une spécialisation DPS à distance très mobile avec une identité de classe forte basée sur les familiers, envisagez de l'essayer.<br><br>L'un des plus grands attraits du jeu en Maîtrise des bêtes est sans doute la mobilité de la spécialisation. Maîtrise des bêtes est la seule spécialisation DPS à distance du jeu capable d'infliger 100% de ses dégâts en mouvement, sans aucune restriction. Cela représente un avantage considérable dans tout type de contenu JcE, car vous pouvez toujours gérer les mécaniques ou tout ce qui se passe sans gaspiller le moindre dégât — ce qu'aucun autre DPS à distance ne peut accomplir. En combinant cette mobilité avec une puissante im</div><div id="g-hunter-marksmanship" class="guide">APERÇU<br>Le Chasseur Tir est une spécialisation DPS à distance portant des armures en mailles, qui se concentre sur un gameplay à longue portée et plutôt lent, entrecoupé de phases de dégâts en rafale élevés délivrés rapidement. Si vous aimez abattre vos ennemis de loin avec des tirs puissants et réfléchis, tout en vous déplaçant le moins possible, Tir est la spécialisation qu'il vous faut.<br><br>FORCES ET FAIBLESSES DU CHASSEUR TIR<br>Forces | Faiblesses<br><br>Les Chasseurs Tir excellent dans les dégâts de zone (AoE) en rafale. Malgré la limitation stricte à 8 cibles, cette spécialisation peut atteindre certains des pics de dégâts les plus élevés du jeu sur ce nombre de cibles.<br>Le Chasseur Tir est une spécialisation assez mobile. Bien qu'inférieur sur ce point à la Maîtrise des bêtes, il reste en avance sur la plupart des autres spécialisations à distance et peut effectuer une grande partie de sa rota</div><div id="g-hunter-survival" class="guide">APERÇU<br>Survival est une spécialisation de mêlée au rythme rapide avec une attaque ou une capacité à utiliser presque chaque seconde. Votre gameplay consiste à jongler avec la gestion de votre Focus, de Tip of the Spear, ainsi que la gestion des temps de recharge de Wildfire Bomb et de Boomstick. Votre objectif principal est un assaut accablant en combat conjoint avec votre familier grâce à Raptor Strike et Strike as One, tout en exploitant votre adaptabilité en tant que Chasseur avec des outils supplémentaires. Survival convient parfaitement aux joueurs qui apprécient une boucle de gameplay dynamique, les familiers, et l'utilisation de tous les outils à leur disposition pour survivre dans Azeroth.<br><br>POINTS FORTS ET FAIBLESSES DU CHASSEUR SURVIVAL<br>Points forts | Faiblesses<br><br>Grande capacité de survie grâce à la réduction des dégâts passive fournie par Mastery: Spirit Bond, ainsi que des déf</div></div><div id="p-mage" class="panel"><span class="back" onclick="XC('mage')">&larr; Retour</span><h2 style="color:#69CCF0;margin:0 0 10px">❄️ Mage</h2><div class="tabs"><span class="on" onclick="SS('mage','arcane',this)">Arcane</span><span onclick="SS('mage','fire',this)">Feu</span><span onclick="SS('mage','frost',this)">Givre</span></div><div id="g-mage-arcane" class="guide on">PRÉSENTATION<br>Thématiquement, les Mages Arcane sont des maîtres du temps et de l'espace. Ils sont capables de rembobiner le flux du temps lui-même plus rapidement et plus fréquemment que toute autre spécialisation de Mage, l'utilisant pour les Soins ou la mobilité. Ils sont également généralement inégalés en matière de dégâts en rafale.<br><br>Mécaniquement, le Mage Arcane est une spécialisation DPS à distance, portant des robes, axée sur des dégâts directs massifs en rafale. La spécialisation repose sur le principe de la connaissance de son ennemi, où la planification de vos temps de recharge, tant offensifs que défensifs, est essentielle. Les Mages s'appuient sur la connaissance des schémas de dégâts entrants à l'avance pour utiliser efficacement leurs défenses. Offensivement, les Mages Arcane infligent des rafales de dégâts importants toutes les 90 secondes avec une plus petite entre les deu</div><div id="g-mage-fire" class="guide">PRÉSENTATION<br>Si vous vous êtes déjà demandé pourquoi l'expression est « combattre le feu par le feu » plutôt que « combattre tout par le feu », alors le Mage Feu est peut-être la spécialisation qu'il vous faut ! Du feu dans lequel nous marchons lors des raids aux Pyroblasts des Pillards des Defias, le Feu a toujours été l'une des écoles de magie les plus dévastatrices de World of Warcraft. Le Mage Feu a toujours été reconnu pour son orientation offensive, ses dégâts élevés et son cleave sous la forme de Mastery: Ignite. Si vous recherchez une spécialisation qui vous permet de transformer vos ennemis en torches vivantes et de propager leurs flammes aux ennemis proches, ne cherchez pas plus loin.<br><br>Le Mage Feu est un lanceur de sorts en tissu et l'une des rares spécialisations de casters à distance dans World of Warcraft qui se concentre sur le cleave plutôt que sur les dégâts dans la durée</div><div id="g-mage-frost" class="guide">Ce guide fournit des informations complètes sur la spécialisation Mage Givre dans la mise à jour Saison 1 de Midnight de World of Warcraft. Les sections principales incluent :<br><br>1. Aperçu du Patch : Présente les changements apportés aux capacités et aux talents du Mage Givre.<br>2. Forces et Faiblesses : Met en avant la flexibilité du mage en termes de Dégâts, ses solides options de mobilité et son contrôle du champ de bataille, ainsi que ses vulnérabilités, telles que le manque de Dégâts de zone dispersée et les capacités d'auto-soins limitées.<br>3. Mécaniques de Jeu : Détails sur la façon de jouer efficacement un Mage Givre, avec un accent sur la gestion des capacités, les stratégies de rotation et l'importance des procs tels que Fingers of Frost et Brain Freeze.<br>4. Builds de Talents : Liens vers des builds de talents spécifiques adaptés au contenu Raid et Mythique+.<br>5. **Équ</div></div><div id="p-monk" class="panel"><span class="back" onclick="XC('monk')">&larr; Retour</span><h2 style="color:#00FF96;margin:0 0 10px">☯️ Moine</h2><div class="tabs"><span class="on" onclick="SS('monk','brewmaster',this)">Maître brasseur</span><span onclick="SS('monk','mistweaver',this)">Tisse-brume</span><span onclick="SS('monk','windwalker',this)">Marche-vent</span></div><div id="g-monk-brewmaster" class="guide on">Ce document est un guide complet pour jouer en tant que Moine Brassemaître dans World of Warcraft, spécifiquement pour le Patch 12.0.1 et la Saison 1 de Midnight. Il couvre divers aspects tels que :<br><br>1. Présentation : Les Moines Brassemaîtres sont des spécialisations de Tank reconnues pour leur atténuation des dégâts, leur mobilité et leurs capacités défensives uniques. Leur gameplay repose largement sur la gestion des dégâts à travers leurs capacités et leurs temps de recharge.<br><br>2. Sections Principales du Contenu :<br>   - Aide-mémoire (Cheat Sheet)<br>   - Builds de Talents<br>   - Rotation et Temps de Recharge<br>   - Équipement Idéal (Best-in-Slot / BiS)<br>   - Consommables<br>   - Priorité des Statistiques<br><br>3. Points Forts et Points Faibles : Les Moines Brassemaîtres excellent en matière de durabilité et de mobilité, mais peinent avec la taille de leur réserve de points de vie ainsi que </div><div id="g-monk-mistweaver" class="guide">Le guide détaille la spécialisation Moine Tissevent pour la Saison 1 de Minuit de World of Warcraft, couvrant les aspects essentiels tels que les points forts, les points faibles, les talents et les stratégies de gameplay. Les points clés incluent :<br><br>1. Style de Soins : Les Moines Tissevent combinent des capacités de soins en mêlée et à distance, favorisant un style de jeu actif.<br>2. Points Forts : Grande mobilité, flexibilité des cooldowns puissants et une faible barrière d'entrée pour les nouveaux joueurs.<br>3. Points Faibles : Risque de problèmes de gestion des ressources et difficultés avec le spell weaving pour les nouveaux joueurs.<br>4. Conseils de Gameplay : Concentrez-vous sur le maintien des capacités importantes en cooldown, gérez efficacement votre mana, coordonnez les cooldowns de soins et chronométrez judicieusement vos buffs.<br>5. Priorité des Statistiques : In</div><div id="g-monk-windwalker" class="guide">Voici un aperçu du guide DPS du Moine Marcheur-du-Vent pour la Saison 1 de Minuit dans World of Warcraft. Le guide comprend des sections telles qu'une présentation de la spécialisation Moine Marcheur-du-Vent, ses principales forces et faiblesses, des liens essentiels vers des builds de talents, des rotations, le meilleur équipement disponible (BiS), ainsi que les consommables recommandés. Il aborde les mécaniques de gameplay fondamentales, notamment la gestion des ressources, l'importance de maintenir les temps de recharge actifs et l'adaptation aux effets de procs afin de maximiser les Dégâts infligés. De plus, le guide détaille les récents changements apportés par les mises à jour, incluant les capacités supprimées et les nouvelles compétences, et fournit des conseils sur les meilleures races et professions pour optimiser les performances du Moine Marcheur-du-Vent. Dans l'ensemble, ce </div></div><div id="p-paladin" class="panel"><span class="back" onclick="XC('paladin')">&larr; Retour</span><h2 style="color:#F58CBA;margin:0 0 10px">🛡️ Paladin</h2><div class="tabs"><span class="on" onclick="SS('paladin','holy',this)">Sacré</span><span onclick="SS('paladin','protection',this)">Protection</span><span onclick="SS('paladin','retribution',this)">Vindicte</span></div><div id="g-paladin-holy" class="guide on">APERÇU<br>Le Paladin Sacré est une spécialisation de Soins portant une armure en plaques, disposant d'un large éventail de capacités de réduction des dégâts et de défensives. Nous nous spécialisons dans les soins ciblés sur des cibles spécifiques avec de grands soins mono-cible, communément appelés « spot healing ». Le Paladin Sacré obtient accès à la capacité emblématique Beacon of Light au niveau 16, qui nous permet de maintenir un flux constant de soins sur une cible spécifique tout en soignant d'autres alliés qui pourraient en avoir besoin !<br><br>Outre la ressource classique des Soigneurs, le Mana, les Paladins Sacrés utilisent également une ressource secondaire connue sous le nom de Holy Power, qui fonctionne de manière similaire aux Points de Combo. La plupart de nos sorts génèrent cette ressource, que nous pouvons ensuite utiliser pour lancer Word of Glory et Light of Dawn.<br><br>FORCES ET FA</div><div id="g-paladin-protection" class="guide">PRÉSENTATION<br>En tant que Paladin Protection, vous êtes le gardien de première ligne qui canalise la Lumière Sacrée pour tanker les Raids et les Mythiques+. En tant que guerrier de la Lumière, vous disposez d'un arsenal de marteaux bénis, de boucliers et d'Auras pour une mitigation massive, des auto-soins et une utilité de groupe importante.<br><br>Le Paladin Protection est une spécialisation idéale pour les joueurs qui apprécient un style de Tank classique, combiné à la capacité de se soigner pour une quantité considérable des dégâts reçus et de soutenir leurs alliés grâce à des sorts situationnels.<br><br>POINTS FORTS ET FAIBLESSES DU PALADIN PROTECTION<br>Points forts		Faiblesses<br><br>Excellente utilité de groupe sous forme de bénédictions offrant des avantages uniques. Celles-ci incluent Blessing of Sacrifice, Blessing of Freedom ou Blessing of Protection pouvant être lancées sur différents membres du g</div><div id="g-paladin-retribution" class="guide">APERÇU<br>Les Paladins Vindicte sont des croisés sacrés qui utilisent une arme à deux mains pour transformer la puissance de la Lumière en puissantes capacités offensives, apportant justice et vengeance à leurs ennemis. Vindicte est la spécialisation Dégâts du Paladin et constitue une spécialisation de mêlée, bien qu'elle dispose également de nombreuses capacités pouvant être lancées à distance.<br><br>Le cœur de notre rotation est centré sur l'utilisation de capacités comme Blade of Justice et Judgment pour générer de la Puissance Sacrée, qui est consommée pour infliger de puissants dégâts grâce à des capacités comme Final Verdict ou Divine Storm. Bien que les options de mobilité du Paladin soient quelque peu limitées, vous aurez accès à un large éventail de buffs pour vous-même et votre groupe pour vous aider tout au long d'un combat, ainsi qu'à de solides capacités défensives et de soins pour </div></div><div id="p-priest" class="panel"><span class="back" onclick="XC('priest')">&larr; Retour</span><h2 style="color:#FFFFFF;margin:0 0 10px">✨ Prêtre</h2><div class="tabs"><span class="on" onclick="SS('priest','discipline',this)">Discipline</span><span onclick="SS('priest','holy',this)">Sacré</span><span onclick="SS('priest','shadow',this)">Ombre</span></div><div id="g-priest-discipline" class="guide on">APERÇU<br>Les Prêtres Discipline sont des Soigneurs de burst maîtrisés qui apportent à la fois une absorption des dégâts et une utilité de réduction des dégâts. Ils se préparent aux dégâts entrants en marquant les joueurs avec des buffs utiles sous la forme d'Atonement, ce qui permet aux dégâts infligés aux ennemis par le Prêtre Discipline de soigner également les alliés marqués.<br><br>Avec cela, il existe un flux et reflux naturel dans les Soins de la Discipline, où le joueur &quot;monte en puissance&quot; son nombre d'Atonement pour augmenter ses soins, puis se repose entre ces montées en puissance, fournissant des soins mineurs entre ses grands bursts. Evangelism applique non seulement Atonement en lançant Power Word: Radiance, mais il dispose également d'un talent de suivi, Archangel, qui augmente considérablement vos soins et absorptions produites.<br><br>POINTS FORTS ET FAIBLESSES DU PRÊTRE DISCIPLINE<br>Poi</div><div id="g-priest-holy" class="guide">APERÇU<br>Les Prêtres Sacré sont des Soigneurs polyvalents qui apportent des soins monocibles significatifs et des soins de zone (AoE) corrects grâce à leurs puissants Holy Words sous la forme de Holy Word: Sanctify et Holy Word: Serenity. Pendant Apotheosis, la réduction de temps de recharge de ces capacités est considérablement augmentée, vous permettant de les lancer à un coût de mana réduit, de les utiliser plus fréquemment grâce à la réduction de recharge supplémentaire, et de soigner davantage. Tous ces effets de soins appliquent également un effet de Soin sur la Durée (HoT) provenant de la Maîtrise de la spécialisation, Mastery: Echo of Light.<br><br>POINTS FORTS ET FAIBLESSES DU PRÊTRE SACRÉ<br>Points Forts | Faiblesses<br><br>Profil de soins polyvalent grâce au talent Miracle Worker, ainsi que toutes les capacités de soins directs qui causent également un effet HoT sous la forme de Mastery: Echo </div><div id="g-priest-shadow" class="guide">APERÇU<br>Le Prêtre Ombre est une spécialisation DPS à distance portant des tissus, combinant des dégâts directs et des compétences de Dégâts sur la Durée (DoT). La spécialisation se concentre principalement sur les dégâts d'Ombre, et la plupart de ses capacités défensives sont liées à ses soins sur soi-même. Les Prêtres, en général, sont très lents, et l'Ombre ne fait pas exception à cette tendance. Sans déplacement de base ni compétences de mouvement, vous devrez anticiper vos déplacements lors des rencontres, ainsi qu'utiliser au maximum les rares outils de kiting à votre disposition. En plus d'amplifier leurs propres dégâts, les Prêtres Ombres ont également la capacité de renforcer les dégâts de leurs alliés. Il s'agit d'une spécialisation DPS axée sur la concentration de la majorité de ses dégâts lors de fenêtres de burst toutes les minutes, grâce à de nombreux cooldowns combinés.<br><br>POI</div></div><div id="p-rogue" class="panel"><span class="back" onclick="XC('rogue')">&larr; Retour</span><h2 style="color:#FFF569;margin:0 0 10px">🗡️ Voleur</h2><div class="tabs"><span class="on" onclick="SS('rogue','assassination',this)">Assassinat</span><span onclick="SS('rogue','outlaw',this)">Hors-la-loi</span><span onclick="SS('rogue','subtlety',this)">Finesse</span></div><div id="g-rogue-assassination" class="guide on">APERÇU<br>Le Rogue Assassinat est une spécialisation DPS portant du cuir et se battant avec deux armes, spécialisée dans les effets de Dégâts sur la Durée (DoT). Ces puissants dégâts basés sur la Nature et les Saignements sont augmentés par un arsenal complet de cooldowns pour assassiner tous les ennemis qui se dressent sur notre chemin. Être une spécialisation basée sur les DoT nous rend plus lent que nos compagnons Rogues Subtilité et Hors-la-loi, mais ne confondez pas un gameplay plus lent avec moins d'efficacité !<br><br>POINTS FORTS ET FAIBLESSES DU ROGUE ASSASSINAT<br>Points forts | Faiblesses<br><br>Bons dégâts sur cible unique et en cleave de mêlée, axés sur les effets DoT via les Saignements et les Poisons.<br>Caustic Spatter permet un cleave puissant sans sacrifier les dégâts sur cible unique.<br>Assassinat est une spécialisation de Rogue au rythme lent et facile à jouer, laissant plus de capacité à s</div><div id="g-rogue-outlaw" class="guide">APERÇU<br>Vous souhaitez jouer un Rogue qui ne craint personne et se jette courageusement dans la mêlée ? Un combattant qui utilise des armes à une main pour tenir sa position en combat ouvert et déchaîner un tourbillon d'attaques contre un ou plusieurs ennemis ? Un maître des armes qui peut également compter sur un pistolet dissimulé pour le soutenir au combat et surprendre l'ennemi ? Dans ce cas, vous devriez essayer Outlaw !<br><br>Comme toute spécialisation de Rogue, Outlaw utilise de l'Énergie pour attaquer les cibles. Ces attaques peuvent généralement être classées en deux catégories : les Générateurs, qui produisent des Points de Combo, et les Finisseurs, qui consomment ces Points de Combo pour porter un coup puissant.<br><br>Outlaw est une spécialisation au rythme très soutenu où vous pouvez appuyer sur de nombreuses touches pour infliger des dégâts directs. Elle dispose également de la mécaniq</div><div id="g-rogue-subtlety" class="guide">APERÇU<br>Le Rogue Subtilité est une spécialisation DPS utilisant deux armes d'hast et portant du cuir, axée sur des cycles courts de dégâts élevés et un grand cooldown permettant une période de burst prolongée toutes les 90 secondes. C'est la spécialisation Rogue qui utilise Shadow Dance comme capacité signature. Les Rogues Subtilité mettent l'accent sur l'accumulation de cooldowns et centrent le gameplay autour de courtes fenêtres de dégâts, ce qui peut conduire à de forts pics de dégâts. Si jouer autour de périodes de burst élevé pendant les cooldowns, avec une production plus faible en dehors, vous semble attrayant, Subtilité est le choix parfait pour vous.<br><br>FORCES ET FAIBLESSES DU ROGUE SUBTILITÉ<br>Forces			Faiblesses<br><br>Fortes fenêtres de burst toutes les 90 secondes.<br>Cooldowns de dégâts fréquents.<br>Bonne performance en cible unique.<br>Dégâts prioritaires solides en AoE.<br>Style de jeu rapide </div></div><div id="p-shaman" class="panel"><span class="back" onclick="XC('shaman')">&larr; Retour</span><h2 style="color:#0070DE;margin:0 0 10px">⚡ Chaman</h2><div class="tabs"><span class="on" onclick="SS('shaman','elemental',this)">Élémentaire</span><span onclick="SS('shaman','enhancement',this)">Amélioration</span><span onclick="SS('shaman','restoration',this)">Restauration</span></div><div id="g-shaman-elemental" class="guide on">PRÉSENTATION<br>Le Chaman Élémentaire est un lanceur de sorts à distance portant une armure de mailles, doté d'effets de sorts spectaculaires et d'une grande variété de capacités, maniant des sorts de Nature, de Feu et de Givre pour endommager ses adversaires.<br><br>Nous pouvons utiliser des Bâtons ou des Masses à une main avec des Boucliers et, selon nos builds, alterner entre une grande robustesse ou une grande mobilité en fonction de la rencontre.<br><br>En tant que classe disposant d'une spécialisation de soins en Restauration, nous excellons dans les soins d'appoint pour nos coéquipiers et, de manière générale, dans l'apport de diverses formes d'utilité grâce à nos totems.<br><br>Le Chaman Élémentaire est une spécialisation à jouer pour ceux qui aiment incarner un lanceur de sorts pouvant se spécialiser dans l'aide à ses coéquipiers ou qui apprécient simplement les effets de sorts impressionnants.<br><br>POI</div><div id="g-shaman-enhancement" class="guide">APERÇU<br>Enhancement est une spécialisation de mêlée au rythme effréné qui implique de jongler avec de nombreuses capacités et effets différents. Son objectif principal consiste à utiliser des attaques de mêlée infusées d'éléments comme Stormstrike, Lava Lash et Crash Lightning pour générer des charges de Maelstrom Weapon, qui sont consommées pour lancer des sorts puissants. Enhancement convient aux joueurs qui apprécient un style de jeu hybride guerrier-mage, en mettant l'accent sur les décisions prises instant par instant pour gérer les procs, les ressources et les temps de recharge.<br><br>FORCES ET FAIBLESSES DU CHAMAN ENHANCEMENT<br>Forces | Faiblesses<br><br>La majorité de l'arbre privilégié, Totemic, effectue des cleaves gratuitement, ce qui le rend flexible dans la plupart des rencontres.<br>Des temps de recharge offensifs puissants en cible unique et en AoE.<br>Des outils de Contrôle de Foule, une int</div><div id="g-shaman-restoration" class="guide">APERÇU<br>Le Chaman Restauration est une spécialisation de soins réactifs dotée d'un large kit d'utilité. En utilisant du Mana et une collection de différents totems, vous pouvez répondre à chaque situation tout en restant une spécialisation simple et accessible. Appliquez des soins au fil du temps avec Riptide, maintenez Healing Rain, soignez plusieurs personnes à la fois avec Chain Heal, posez des totems de soins comme Healing Stream Totem et Healing Tide Totem, ou des totems d'utilité comme Tremor Totem et Poison Cleansing Totem. La Restauration est la spécialisation idéale pour les joueurs qui souhaitent faire face à une grande variété de situations tout en restant facile à apprendre et à comprendre.<br><br>POINTS FORTS ET POINTS FAIBLES DU CHAMAN RESTAURATION<br>Points Forts | Points Faibles<br><br>Très facile à apprendre.<br>Excellente utilité avec des sorts comme Tremor Totem, Poison Cleansing Totem, </div></div><div id="p-warlock" class="panel"><span class="back" onclick="XC('warlock')">&larr; Retour</span><h2 style="color:#9482C9;margin:0 0 10px">🔥 Démoniste</h2><div class="tabs"><span class="on" onclick="SS('warlock','affliction',this)">Affliction</span><span onclick="SS('warlock','demonology',this)">Démonologie</span><span onclick="SS('warlock','destruction',this)">Destruction</span></div><div id="g-warlock-affliction" class="guide on">Classe : Démoniste - Affliction<br><br>Ce document est un guide pour les Démonistes Affliction dans World of Warcraft, couvrant le Patch 12.0.1 et la Saison 1 de Midnight. Il inclut des liens vers diverses sections telles que les Compositions de Talents, la Rotation, l'Équipement Idéal (BiS), et les Consommables. Les points clés incluent :<br><br>1. Présentation : Les Démonistes Affliction sont des lanceurs de sorts DPS qui se concentrent sur les compétences de Dégâts sur la Durée (DoT), excellant dans la survie et les dégâts sur des cibles dispersées.<br><br>2. Forces et Faiblesses : Les forces incluent la durabilité et la diversité des talents ; les faiblesses sont l'absence d'immunité aux dégâts et une montée en puissance lente des DPS.<br><br>3. Rotation et Style de Jeu : Les joueurs doivent gérer efficacement leurs Éclats d'Âme, en répondant aux fenêtres de dégâts et aux temps de recharge des a</div><div id="g-warlock-demonology" class="guide">L'article wiki est un guide complet pour jouer un Démoniste Démonologie lors de la Saison 1 de Midnight du jeu. Les sections principales incluent :<br><br>1. Présentation : Les démons sont au cœur des capacités du Démoniste, utilisant les Soul Shards comme ressource principale.<br>2. Forces et Faiblesses : Particulièrement résistant, offrant une excellente survie et de nombreux talents, mais possède un faible DPS burst et un temps de montée en puissance élevé pour les dégâts.<br>3. Builds de Talents : Liens vers les choix de talents optimaux pour le contenu JcE.<br>4. Rotation : Met l'accent sur la gestion des temps de recharge et la maximisation des dégâts grâce à une mise en place correcte des démons.<br>5. Équipement et Priorité des Stats : Préconise de prioriser la Hâte &gt; Coup Critique &gt; Maîtrise &gt; Polyvalence, ainsi que l'importance de l'Intelligence.<br>6. **Prof</div><div id="g-warlock-destruction" class="guide">Le Guide DPS du Démoniste Destruction pour la Saison 1 de Midnight fournit des informations complètes sur la façon de jouer cette classe efficacement dans le contenu JcE. Le guide couvre les aspects essentiels suivants :<br><br>1. Présentation : Met en avant la capacité du Démoniste Destruction à produire des Dégâts élevés via Chaos Bolt et des Dégâts de cleave avec la compétence Havoc, en utilisant les Fragments d'Âme pour la gestion des ressources.<br><br>2. Forces et Faiblesses : Aborde les performances en Raid et en Mythique+, soulignant un fort potentiel de cleave et une bonne mobilité en Raid, mais une faiblesse en Dégâts sur cible unique et une atténuation limitée des Dégâts de dégénérescence.<br><br>3. Mécaniques de Jeu : Met l'accent sur la gestion attentive des temps de recharge, de la ressource Fragments d'Âme afin d'éviter le surcap, et sur l'adaptation aux situations de déplacemen</div></div><div id="p-warrior" class="panel"><span class="back" onclick="XC('warrior')">&larr; Retour</span><h2 style="color:#C79C6E;margin:0 0 10px">⚔️ Guerrier</h2><div class="tabs"><span class="on" onclick="SS('warrior','arms',this)">Armes</span><span onclick="SS('warrior','fury',this)">Fureur</span><span onclick="SS('warrior','protection',this)">Protection</span></div><div id="g-warrior-arms" class="guide on">APERÇU<br>Les Guerriers Armes sont des infligeurs de dégâts à haute intensité, spécialisés dans les Saignements, le gameplay à base de procs et les dégâts d'Execute. La rotation commence avec une combinaison de Mortal Strike, Overpower et Rend, ponctuée par des périodes de dégâts en rafale grâce à Colossus Smash, avant de conclure l'affrontement par de puissants Executes. Leur rotation est très exigeante, tant en génération qu'en dépense de ressources, ce qui entraîne un gameplay irrégulier où la Rage se remplit et se vide rapidement en grandes quantités. L'astuce pour bien gérer cela est de dépenser suffisamment de Rage pour éviter de dépasser le plafond, sans en dépenser au point de se retrouver à court et d'être incapable de remplir les temps de recharge globaux. Étant donné que presque chaque capacité consomme des ressources, les Guerriers Armes doivent toujours anticiper.<br><br>POINTS FORTS</div><div id="g-warrior-fury" class="guide">PRÉSENTATION<br>Fury est une spécialisation au gameplay dynamique et rapide, axée sur des dégâts soutenus plutôt que sur des pics de burst. Avec une seule capacité dépensant de la Rage, l'objectif de la rotation est simple : générer suffisamment de Rage pour lancer Rampage et maintenir Enrage, tout en utilisant une multitude d'autres capacités au fil du chemin.<br><br>Le Guerrier Fury est une bonne spécialisation pour les joueurs cherchant un style de jeu toujours actif, car chaque autre capacité est un générateur de ressources avec un temps de recharge court ou inexistant, sans aucun temps mort passé à attendre. Cela le rend très engageant et prouve qu'une spécialisation n'a pas besoin d'être compliquée pour être amusante.<br><br>POINTS FORTS ET FAIBLESSES DU GUERRIER FURY<br>Points forts | Faiblesses<br><br>Excelle dans la transition dynamique entre cible unique et cibles multiples.<br>Cooldowns multi-cibles ave</div><div id="g-warrior-protection" class="guide">PRÉSENTATION<br>Les Guerriers Protection sont la spécialisation Tank originelle de World of Warcraft, représentant l'archétype classique du personnage « épée et bouclier » avec un style de jeu agressif -- plus vous combattez, plus vous êtes puissant !<br><br>En tant que spécialisation, Protection se concentre sur l'infliction de dégâts directs couplés à des applications de Saignement pour une sortie de dégâts passive. Nos capacités défensives sont liées au Blocage, qui est sans doute l'une des mécaniques défensives les plus puissantes du jeu. Nous pouvons parfois même bloquer les attaques magiques, réduisant ainsi considérablement les dégâts reçus.<br><br>FORCES ET FAIBLESSES DU GUERRIER PROTECTION<br>Forces		Faiblesses<br><br>Des cooldowns offensifs puissants utilisables fréquemment.<br>Des cooldowns courts sur la plupart des capacités défensives, permettant de couvrir de nombreuses mécaniques si bien espacés.<br>He</div></div></section><section id="djn"><div class="hb"><h2>Donjons &mdash; Saison 1</h2></div><div class="dg"><div class="box"><h3>Windrunner Spire <span class="tag">Quel'Danas</span></h3><div class="ct">Windrunner Spire]()<br><br>  - Donjons de Harandar<br><br>    - The Blinding Vale<br><br>  - Donjons du Voidstorm<br><br>    - Nexus Point Xenas<br>   </div></div><div class="box"><h3>Magister's Terrace <span class="tag">Quel'Danas</span></h3><div class="ct">Magister's Terrace<br>    - Murder Row<br>    - Windrunner Spire<br><br>  - Donjons de Harandar<br><br>    - The Blinding Vale<br><br>  - Donjons de Voidstorm<br><br>    - Nexus Point Xenas<br>    - Voidscar Arena<br><br>  - Donjons de Zul'Aman<br><br>    - Den of Nalorakk<br>    - Maisara Caverns<br><br>  - Donjons M+ Héritage<br><br>    - Algeth'ar Academy</div></div><div class="box"><h3>Murder Row <span class="tag">Quel'Danas</span></h3><div class="ct">Murder Row]()<br>    - Windrunner Spire<br><br>  - Donjons de Harandar<br><br>    - The Blinding Vale<br><br>  - Donjons de Voidstorm<br><br>    - [Nexus Poin</div></div><div class="box"><h3>Den of Nalorakk <span class="tag">Zul'Aman</span></h3><div class="ct">Den of Nalorakk]()<br>    - Maisara Caverns<br><br>  - Donjons M+ Héritage<br><br>    - Algeth'ar Academy<br>    - Pit of Saron<br>    - [Seat of the Trium</div></div><div class="box"><h3>Maisara Caverns <span class="tag">Zul'Aman</span></h3><div class="ct">Maisara Caverns]()<br><br>  - Donjons M+ Héritage<br><br>    - Algeth'ar Academy<br>    - Pit of Saron<br>    - Seat of the Triumvirate<br>    - [S</div></div><div class="box"><h3>The Blinding Vale <span class="tag">Harandar</span></h3><div class="ct">Blinding Vale]()<br><br>  - Donjons Voidstorm<br><br>    - Nexus Point Xenas<br>    - Voidscar Arena<br><br>  - Donjons Zul'Aman<br><br>    - [Den of Nalo</div></div><div class="box"><h3>Nexus-Point Xenas <span class="tag">Voidstorm</span></h3><div class="ct">Nexus-Point Xenas]() | ![Nexus-Point Xenas: EclipseNexus-Point Xenas: Eclipse]() | Niveau 90 |<br>| Voidscar Arena | ![Voidscar Arena: Breaking the TriadVoidscar Arena: Breaking the Triad]() | Niveau 90 |<br><br>Donjons Saisonniers en</div></div><div class="box"><h3>Voidscar Arena <span class="tag">Voidstorm</span></h3><div class="ct">Voidscar Arena]()<br><br>  - Donjons de Zul'Aman<br><br>    - Den of Nalorakk<br>    - Maisara Caverns<br><br>  - Donjons M+ Héritage<br><br>    - [Algeth'ar A</div></div></div></section><section id="rds"><div class="hb"><h2>Raids &mdash; Saison 1</h2></div><div class="rg"><div class="box"><h3>The Voidspire</h3><p style="color:#f0c040;font-size:.8em;margin-bottom:4px">8 boss &mdash; Premier raid S1</p><div class="ct">Présentation du Raid The Voidspire - Lieu, Récompenses et Boss<br><br>Par iMX3<br>Mis à jour : 12/03/2026<br><br>Afficher la Table des Matières<br><br>The Voidspire est l'un des trois raids proposés lors de la première saison de l'extension Midnight. Découvrez l'essentiel de ce raid, notamment son emplacement, son calendrier de sortie, son butin et bien plus encore.<br><br>![\<br>Présentation de The Voidspire](</div></div><div class="box"><h3>The Dreamrift</h3><p style="color:#f0c040;font-size:.8em;margin-bottom:4px">Boss unique &mdash; Chimaerus</p><div class="ct">Présentation du Raid The Dreamrift - Lieu, Récompenses et Boss<br><br>Par iMX3<br>Mis à jour :<br>18/03/2026<br><br>Afficher la table des matières<br><br>The Dreamrift est un raid à un seul boss présenté dans la première saison de l'extension Midnight. Découvrez l'essentiel de ce raid, notamment son emplacement, son calendrier de sortie, son butin et bien plus encore.<br><br>![\<br>Présentation de The Dreamrift](</div></div><div class="box"><h3>March on Quel'Danas</h3><p style="color:#f0c040;font-size:.8em;margin-bottom:4px">2 boss &mdash; Raid final</p><div class="ct">Présentation du Raid March on Quel'Danas - Lieu, Récompenses et Boss<br><br>Par iMX3<br>Mis à jour le :<br>12/03/2026<br><br>Afficher la table des matières<br><br>March on Quel'Danas est un raid composé de deux boss, introduit lors de la première saison de l'extension Midnight. Découvrez l'essentiel de ce raid, notamment son emplacement, son calendrier de sortie, son butin, et bien plus encore.<br><br>- Présentation de March on Quel'Danas<br>- Fiches récapitulatives des boss<br>- Guide et récompenses de Belo'ren<br>- Guide et récompenses de Midnight Falls<br><br>Dates de sortie de March on Quel</div></div></div></section><section id="pvp"><div class="hb"><h2>PvP &mdash; Saison 1</h2></div>
-<div class="box"><h3>Ar&#232;nes</h3><p>Formats 2c2, 3c3 et Solo Shuffle. R&#233;compenses : ensembles gladiateur, titre Gladiateur Saison 1 de Midnight.</p></div>
-<div class="box"><h3>Champs de Bataille</h3><p>Champs de bataille classiques avec r&#233;compenses de saison mises &#224; jour. Comp Stomp de retour. &#201;quipement PvP Versatilit&#233;.</p></div>
-<div class="box"><h3>R&#233;compenses</h3><p>Ensembles gladiateur par classe, montures exclusives, titres, succ&#232;s et enchantements d'arme visuels.</p></div>
-</section><section id="lvl"><div class="hb"><h2>Leveling 70 &#224; 90</h2></div>
-<div class="box"><h3>Parcours</h3><p>70-74 : Eversong Woods<br>74-78 : Silvermoon City<br>78-82 : Zul'Aman<br>82-86 : Harandar<br>86-90 : Voidstorm</p></div>
-<div class="box"><h3>Conseils</h3><p>Mode Aventure si d&#233;j&#224; un perso 90. Donjons = excellente XP. Syst&#232;me Proie d&#232;s niv. 78. H&#233;ritages recommand&#233;s.</p></div>
-</section><section id="sys"><div class="hb"><h2>Syst&#232;mes</h2></div>
-<div class="box"><h3>Talents Apex</h3><div class="ct">Sommaire du guide<br><br>Patch 12.0.1<br><br>~~~~<br>Midnight<br><br>- Aperçu de l'extension<br><br>- Précommandes de l'extension<br><br>- Feuille de route Midnight<br><br>- Lore de Midnight<br><br><br>~~~~<br>Fonctionnalités<br><br>- Logement des joueurs<br><br>- [</div></div>
-<div class="box"><h3>Syst&#232;me Proie (Prey)</h3><div class="ct">Contenu du Guide<br><br>Patch 12.0.1<br><br>4.6/5<br><br>(5 Votes)<br><br>~~~~<br>Midnight<br><br>- Aperçu de l'Extension<br><br>- Précommandes de l'Extension<br><br>- Feuille de Route de Midnight<br><br>- Lore de Midnight<br><br><br>~~~~<br>Fonctionnalités<br><br>- [Logement des Joueurs](</div></div>
-<div class="box"><h3>Chasseur de D&#233;mons D&#233;voreur</h3><div class="ct">Contenu du Guide<br><br>Patch 12.0.1<br><br>4.2/5<br><br>(5 Votes)<br><br>~~~~<br>Midnight<br><br>- Aperçu de l'Extension<br><br>- Précommandes de l'Extension<br><br>- Feuille de Route Midnight<br><br>- Histoire de Midnight<br><br><br>~~~~<br>Fonctionnalités<br><br>- [Logement des Joueurs](</div></div>
-<div class="box"><h3>Aper&#231;u Extension</h3><div class="ct">Contenu du Guide<br><br>Patch 12.0.1<br><br>4.2/5<br><br>(48 Votes)<br><br>~~~~<br>Midnight<br><br>- Aperçu de l'Extension<br><br>  - Nouvelles Fonctionnalités<br>  - Logement des Joueurs<br>  - Nouvelle Spécialisation DH : Devourer<br><br>    - [Nouveaux Talents Héroïques : Annihilator](</div></div>
-</section><section id="lor"><div class="hb"><h2>Lore</h2></div>
-<div class="box"><h3>Compendium</h3><div class="ct">Contenu du Guide<br><br>Patch 12.0.1<br><br>~~~~<br>Midnight<br><br>- Aperçu de l'Extension<br><br>- Précommandes de l'Extension<br><br>- Feuille de Route de Midnight<br><br>- Lore de Midnight<br><br>  - [Avant Midnight](</div></div>
-<div class="box"><h3>Macros</h3><p>/focus [@mouseover,exists][@target,exists]<br>/cast [@focus,harm,nodead] Pummel<br>/use 13<br>/use 14<br>/use Tempered Potion<br>/cast [@mouseover,help,nodead][@player] Flash Heal</p></div>
-</section><section id="news"><div class="hb"><h2>Actualit&#233;s</h2></div><div class="box"><h3>March on Quel'Danas disponible <span class="tag">Wowhead</span></h3><p style="color:#8b949e;font-size:.75em">01/04/2026</p><p>Raid final S1 avec 2 boss accessible.</p></div><div class="box"><h3>Raids Mythiques et M+ ouverts <span class="tag">Wowhead</span></h3><p style="color:#8b949e;font-size:.75em">25/03/2026</p><p>Difficult&#233;s sup&#233;rieures pour 3 raids et 8 donjons.</p></div><div class="box"><h3>Twitch Drops Void Grrgle <span class="tag">Wowhead</span></h3><p style="color:#8b949e;font-size:.75em">20/03/2026</p><p>Objet d&#233;co maison via Twitch le 26 mars.</p></div><div class="box"><h3>Feedback Auras Priv&#233;es <span class="tag">Wowhead</span></h3><p style="color:#8b949e;font-size:.75em">20/03/2026</p><p>Soigneurs critiquent la visibilit&#233; des debuffs.</p></div><div class="box"><h3>Hotfixes 19 mars <span class="tag">Blue Tracker</span></h3><p style="color:#8b949e;font-size:.75em">19/03/2026</p><p>Ajustements classes et corrections raids.</p></div><div class="box"><h3>Hall of Fame Nemesis <span class="tag">Wowhead</span></h3><p style="color:#8b949e;font-size:.75em">19/03/2026</p><p>Compl&#233;t&#233; rapidement apr&#232;s lancement S1.</p></div><div class="box"><h3>PTR 12.0.5 <span class="tag">Wowhead</span></h3><p style="color:#8b949e;font-size:.75em">19/03/2026</p><p>Notes de d&#233;veloppement disponibles.</p></div><div class="box"><h3>Lancement Saison 1 <span class="tag">Blizzard</span></h3><p style="color:#8b949e;font-size:.75em">18/03/2026</p><p>Ouverture officielle avec ajustements classes.</p></div><div class="box"><h3>DH D&#233;voreur <span class="tag">Wowhead</span></h3><p style="color:#8b949e;font-size:.75em">02/03/2026</p><p>Nouvelle spec DPS mi-distance, Elfes du Vide &#233;ligibles.</p></div><div class="box"><h3>Twilight Ascension <span class="tag">Numerama</span></h3><p style="color:#8b949e;font-size:.75em">28/02/2026</p><p>&#201;v&#233;nement pr&#233;-lancement, invasions du Vide.</p></div></section><section id="s1"><div class="hb"><h2>Saison 1</h2></div>
-<div class="box"><h3>Vue d'ensemble</h3><div class="ct">Contenu du Guide<br><br>Patch 12.0.1<br><br>4.4/5<br><br>(6 Votes)<br><br>~~~~<br><br>- Great Vault<br><br>- Matrix Catalyst<br><br>- Système de Mise à Niveau des Objets<br><br><br>~~~~<br>Saison 1<br><br>- Aperçu de la Saison<br><br>  - Dates de Sortie<br>  - [Le Raid </div></div>
-<div class="box"><h3>Ensembles de Tier</h3><div class="ct">Contenu du Guide<br><br>Patch 12.0.1<br><br>~~~~<br><br>- Great Vault<br><br>- Matrix Catalyst<br><br>- Système de Mise à Niveau des Objets<br><br><br>~~~~<br>Saison 1<br><br>- Aperçu de la Saison<br><br>- Aperçu des Ensembles de Tier<br><br>  - [Death Knight](</div></div>
-</section><footer>WoW Midnight Hub FR &mdash; Contenu traduit depuis Wowhead.com<br>World of Warcraft &#169; Blizzard Entertainment<br>Mars 2026 &mdash; Patch 12.0.1</footer>
-</div>
+  <h2 class="section-title">Guides de Classe â Saison 1 Midnight</h2>
+  <div class="cls-nav">
+    <button class="cls-btn active" onclick="showCls('warrior')" style="color:#C79C6E">Guerrier</button>
+    <button class="cls-btn" onclick="showCls('paladin')" style="color:#F58CBA">Paladin</button>
+    <button class="cls-btn" onclick="showCls('hunter')" style="color:#ABD473">Chasseur</button>
+    <button class="cls-btn" onclick="showCls('rogue')" style="color:#FFF569">Voleur</button>
+    <button class="cls-btn" onclick="showCls('priest')" style="color:#e8e8e8">PrÃªtre</button>
+    <button class="cls-btn" onclick="showCls('shaman')" style="color:#0070DE">Chaman</button>
+    <button class="cls-btn" onclick="showCls('mage')" style="color:#69CCF0">Mage</button>
+    <button class="cls-btn" onclick="showCls('warlock')" style="color:#9482C9">DÃ©moniste</button>
+    <button class="cls-btn" onclick="showCls('monk')" style="color:#00FF96">Moine</button>
+    <button class="cls-btn" onclick="showCls('druid')" style="color:#FF7D0A">Druide</button>
+    <button class="cls-btn" onclick="showCls('demonhunter')" style="color:#A330C9">Chasseur de DÃ©mons</button>
+    <button class="cls-btn" onclick="showCls('deathknight')" style="color:#C41F3B">Chevalier de la Mort</button>
+    <button class="cls-btn" onclick="showCls('evoker')" style="color:#33937F">Ãvocateur</button>
+  </div>
+
+  <!-- Warrior -->
+  <div id="cls-warrior" class="cls-panel" style="display:block">
+    <div class="spec-block" style="border-left:4px solid #C79C6E">
+      <h3 style="color:#C79C6E">Armes (DPS)</h3>
+      <p>Les Guerriers Armes sont des infligeurs de dÃ©gÃ¢ts Ã  haute intensitÃ©, spÃ©cialisÃ©s dans les Saignements, le gameplay Ã  base de procs et les dÃ©gÃ¢ts d'Execute. La rotation commence avec une combinaison de Mortal Strike, Overpower et Rend, ponctuÃ©e par des pÃ©riodes de dÃ©gÃ¢ts en rafale grÃ¢ce Ã  Colossus Smash, avant de conclure l'affrontement par de puissants Executes. Leur rotation est trÃ¨s exigeante en gÃ©nÃ©ration et dÃ©pense de ressources, ce qui entraÃ®ne un gameplay irrÃ©gulier oÃ¹ la gestion de la Rage est primordiale.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #C79C6E">
+      <h3 style="color:#C79C6E">Fureur (DPS)</h3>
+      <p>Fury est une spÃ©cialisation au gameplay dynamique et rapide, axÃ©e sur des dÃ©gÃ¢ts soutenus plutÃ´t que sur des pics de burst. Avec une seule capacitÃ© dÃ©pensant de la Rage, l'objectif de la rotation est simple : gÃ©nÃ©rer suffisamment de Rage pour lancer Rampage et maintenir Enrage, tout en utilisant une multitude d'autres capacitÃ©s au fil du chemin. Le Guerrier Fury convient aux joueurs cherchant un style de jeu toujours actif.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #C79C6E">
+      <h3 style="color:#C79C6E">Protection (Tank)</h3>
+      <p>Les Guerriers Protection sont la spÃ©cialisation Tank originelle de WoW, reprÃ©sentant l'archÃ©type classique du personnage Â« Ã©pÃ©e et bouclier Â» avec un style de jeu agressif â plus vous combattez, plus vous Ãªtes puissant ! Protection se concentre sur l'infliction de dÃ©gÃ¢ts directs couplÃ©s Ã  des applications de Saignement pour une sortie de dÃ©gÃ¢ts passive. Les capacitÃ©s dÃ©fensives sont liÃ©es au Blocage, l'une des mÃ©caniques les plus robustes du jeu.</p>
+    </div>
+  </div>
+
+  <!-- Paladin -->
+  <div id="cls-paladin" class="cls-panel" style="display:none">
+    <div class="spec-block" style="border-left:4px solid #F58CBA">
+      <h3 style="color:#F58CBA">SacrÃ© (Heal)</h3>
+      <p>Le Paladin SacrÃ© est une spÃ©cialisation de soins polyvalente et robuste, capable d'exceller aussi bien en soins de groupe qu'en soins sur une cible unique. DotÃ© d'un arsenal variÃ© de soins directs, de soins Ã  retardement et d'utilitÃ©s dÃ©fensives, le Paladin SacrÃ© apporte une protection exceptionnelle Ã  son groupe. Son gameplay repose sur la gestion des Charges de LumiÃ¨re SacrÃ©e et l'optimisation des fenÃªtres de Procuration Divine.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #F58CBA">
+      <h3 style="color:#F58CBA">RÃ©tribution (DPS)</h3>
+      <p>Le Paladin RÃ©tribution est un combattant au corps Ã  corps qui allie puissance divine et dÃ©gÃ¢ts physiques. Sa rotation est centrÃ©e sur l'accumulation et la dÃ©pense de Pouvoir SacrÃ©, avec des fenÃªtres de burst alimentÃ©es par Avenging Wrath. Il excelle dans les combats oÃ¹ les soins passifs via Word of Glory peuvent profiter au groupe, offrant Ã  la fois des dÃ©gÃ¢ts compÃ©titifs et une utilitÃ© dÃ©fensive prÃ©cieuse.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #F58CBA">
+      <h3 style="color:#F58CBA">Protection (Tank)</h3>
+      <p>Le Paladin Protection est un tank solide qui utilise la LumiÃ¨re SacrÃ©e pour se protÃ©ger et protÃ©ger ses alliÃ©s. CentrÃ© sur la gestion du Bouclier de la Vertu et du Pouvoir SacrÃ©, ce tank offre une excellente mitigation des dÃ©gÃ¢ts, des soins passifs et une bonne utilitÃ© de groupe. Sa rotation rythmique et prÃ©visible en fait un choix accessible pour les nouveaux tanks.</p>
+    </div>
+  </div>
+
+  <!-- Hunter -->
+  <div id="cls-hunter" class="cls-panel" style="display:none">
+    <div class="spec-block" style="border-left:4px solid #ABD473">
+      <h3 style="color:#ABD473">MaÃ®trise des BÃªtes (DPS)</h3>
+      <p>Le Chasseur MaÃ®trise des BÃªtes est une spÃ©cialisation Ã  distance unique qui dÃ©lÃ¨gue la majeure partie de ses dÃ©gÃ¢ts Ã  ses compagnons animaux. Relativement mobile et simple Ã  jouer, il excelle dans les combats de longue durÃ©e. Sa rotation repose sur la gestion de la FrÃ©nÃ©sie et du Feu Baroud, avec un accent particulier sur l'optimisation des fenÃªtres oÃ¹ votre familier principal inflige des dÃ©gÃ¢ts maximaux.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #ABD473">
+      <h3 style="color:#ABD473">PrÃ©cision (DPS)</h3>
+      <p>Le Chasseur PrÃ©cision est la spÃ©cialisation Ã  distance classique, axÃ©e sur des dÃ©gÃ¢ts prÃ©cis et mÃ©thodiques. Sa rotation tourne autour de la gestion des charges d'Aimed Shot et des fenÃªtres de Trueshot, tout en maintenant un flux constant de Focus. PrÃ©cision excelle dans les combats sur cible unique et offre d'excellentes performances en raid grÃ¢ce Ã  ses dÃ©gÃ¢ts soutenus et prÃ©visibles.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #ABD473">
+      <h3 style="color:#ABD473">Survie (DPS MÃªlÃ©e)</h3>
+      <p>Le Chasseur Survie est la seule spÃ©cialisation de chasseur au corps Ã  corps, combinant explosifs, poisons et combat rapprochÃ© pour un gameplay unique et dynamique. Sa rotation complexe implique la gestion simultanÃ©e de plusieurs ressources : Focus, charges de Bomb, et la rÃ©duction du temps de recharge de Mongoose Bite. Survie rÃ©compense les joueurs maÃ®trisant sa courbe d'apprentissage abrupte avec d'excellents dÃ©gÃ¢ts en rafale.</p>
+    </div>
+  </div>
+
+  <!-- Rogue -->
+  <div id="cls-rogue" class="cls-panel" style="display:none">
+    <div class="spec-block" style="border-left:4px solid #FFF569">
+      <h3 style="color:#FFF569">Assassinat (DPS)</h3>
+      <p>Le Voleur Assassinat est un maÃ®tre des poisons et des saignements, infligeant des dÃ©gÃ¢ts massifs sur la durÃ©e. Sa rotation se concentre sur le maintien de ses nombreux DoTs (Rupture, Garrote, Crimson Tempest) tout en gÃ©nÃ©rant et dÃ©pensant des Points Combo de faÃ§on optimale. Assassinat excelle particuliÃ¨rement dans les combats multi-cibles oÃ¹ ses poisons peuvent affecter de nombreux ennemis simultanÃ©ment.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #FFF569">
+      <h3 style="color:#FFF569">Hors-la-loi (DPS)</h3>
+      <p>Le Voleur Hors-la-loi est une spÃ©cialisation au gameplay excentrique et imprÃ©visible, axÃ©e sur le hasard et les bonus de combat. Sa rotation unique repose sur Roll the Bones, une capacitÃ© qui applique jusqu'Ã  6 buffs alÃ©atoires diffÃ©rents. Hors-la-loi est rÃ©putÃ© pour ses dÃ©gÃ¢ts en zone exceptionnels et ses capacitÃ©s de cleave, en faisant un choix populaire pour les donjons Mythique+.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #FFF569">
+      <h3 style="color:#FFF569">SubtilitÃ© (DPS)</h3>
+      <p>Le Voleur SubtilitÃ© est la spÃ©cialisation la plus complexe du Voleur, mÃªlant furtivitÃ©, burst prÃ©cis et gestion avancÃ©e des ressources. Son gameplay tourne autour des phases de Shadow Dance et Symbols of Death, oÃ¹ il doit maximiser ses dÃ©gÃ¢ts dans des fenÃªtres temporelles courtes. SubtilitÃ© offre des performances exceptionnelles sur cible unique, en faisant un choix de raid privilÃ©giÃ©.</p>
+    </div>
+  </div>
+
+  <!-- Priest -->
+  <div id="cls-priest" class="cls-panel" style="display:none">
+    <div class="spec-block" style="border-left:4px solid #e8e8e8">
+      <h3 style="color:#e8e8e8">Discipline (Heal/DPS)</h3>
+      <p>Le PrÃªtre Discipline est un soigneur unique qui soigne ses alliÃ©s principalement Ã  travers les dÃ©gÃ¢ts qu'il inflige aux ennemis, grÃ¢ce au mÃ©canisme d'Expiation. Sa rotation hybride combine des sorts offensifs comme Penance et Schism avec des soins prÃ©ventifs via les boucliers d'Absorption des Douleurs. Discipline excelle dans les environnements oÃ¹ les dÃ©gÃ¢ts de groupe sont prÃ©visibles et constants.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #e8e8e8">
+      <h3 style="color:#e8e8e8">SacrÃ© (Heal)</h3>
+      <p>Le PrÃªtre SacrÃ© est le soigneur traditionnel par excellence, maÃ®trisant tous les types de soins : directs, Ã  retardement et en zone. Sa rotation versatile s'adapte Ã  toutes les situations grÃ¢ce Ã  un arsenal complet incluant Heal, Flash Heal, Holy Word: Serenity et Circle of Healing. SacrÃ© brille particuliÃ¨rement dans les raids oÃ¹ les soins de groupe massifs sont essentiels.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #e8e8e8">
+      <h3 style="color:#e8e8e8">Ombre (DPS)</h3>
+      <p>Le PrÃªtre Ombre est un lanceur de sorts Ã  distance qui manipule les Ã©nergies de l'Ombre pour infliger des dÃ©gÃ¢ts dÃ©vastateurs. Sa rotation repose sur la gestion de l'InsanitÃ©, une ressource unique qui alimente ses pouvoirs les plus destructeurs. Le PrÃªtre Ombre excelle dans les combats multi-cibles grÃ¢ce Ã  la propagation de ses DoTs via des talents comme Sear, et offre d'excellentes performances soutenues sur longue durÃ©e.</p>
+    </div>
+  </div>
+
+  <!-- Shaman -->
+  <div id="cls-shaman" class="cls-panel" style="display:none">
+    <div class="spec-block" style="border-left:4px solid #0070DE">
+      <h3 style="color:#0070DE">ÃlÃ©mentaire (DPS)</h3>
+      <p>Le Chaman ÃlÃ©mentaire est un lanceur de sorts Ã  distance qui commande les forces de la nature â foudre, feu et terre. Sa rotation se concentre sur la gestion des Maelstrom, une ressource unique, ainsi que sur les cooldowns puissants comme Ascendance et Storm Elemental. ÃlÃ©mentaire se distingue par ses excellents dÃ©gÃ¢ts en rafale et ses capacitÃ©s de Lust/Bloodlust, un atout inestimable pour tout groupe.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #0070DE">
+      <h3 style="color:#0070DE">AmÃ©lioration (DPS MÃªlÃ©e)</h3>
+      <p>Le Chaman AmÃ©lioration est un combattant au corps Ã  corps qui infuse ses armes d'Ã©nergie Ã©lÃ©mentaire pour des attaques dÃ©vastatrices. Sa rotation complexe nÃ©cessite une gestion simultanÃ©e de plusieurs cooldowns et proc, dont Stormbringer, Hot Hand et Doom Winds. AmÃ©lioration offre d'excellentes performances en burst et un gameplay dynamique trÃ¨s engageant.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #0070DE">
+      <h3 style="color:#0070DE">Restauration (Heal)</h3>
+      <p>Le Chaman Restauration est un soigneur puissant spÃ©cialisÃ© dans les soins de groupe grÃ¢ce Ã  ses totems et ses sorts Ã  zone d'effet. Sa rotation repose sur le maintien des totems bÃ©nÃ©fiques, la gestion des Maelstrom pour les Healing Surges d'urgence, et l'utilisation optimale de Chain Heal pour les phases de dÃ©gÃ¢ts de groupe. Restauration excelle en raid et apporte une utilitÃ© unique via Bloodlust.</p>
+    </div>
+  </div>
+
+  <!-- Mage -->
+  <div id="cls-mage" class="cls-panel" style="display:none">
+    <div class="spec-block" style="border-left:4px solid #69CCF0">
+      <h3 style="color:#69CCF0">Arcane (DPS)</h3>
+      <p>Le Mage Arcane est une spÃ©cialisation unique qui sacrifie la mobilitÃ© pour des pics de dÃ©gÃ¢ts extrÃªmes. Sa rotation repose sur la gestion des Charges Arcaniques et de la Mana, alternant entre phases de montÃ©e en puissance et phases de vidange oÃ¹ il libÃ¨re toute sa puissance accumulÃ©e. Arcane excelle dans les rencontres courtes ou avec des phases de burst prÃ©visibles.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #69CCF0">
+      <h3 style="color:#69CCF0">Feu (DPS)</h3>
+      <p>Le Mage Feu est une spÃ©cialisation axÃ©e sur les procs et les Coups Critiques dÃ©vastateurs. Sa rotation dynamique tourne autour de Combustion, son cooldown majeur qui dÃ©cuple les dÃ©gÃ¢ts critiques de Pyroblast et Fireball. Feu offre un gameplay trÃ¨s satisfaisant avec ses nombreux procs de Hot Streak et ses moments de burst spectaculaires.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #69CCF0">
+      <h3 style="color:#69CCF0">Givre (DPS)</h3>
+      <p>Le Mage Givre est une spÃ©cialisation polyvalente qui allie contrÃ´le, ralentissements et dÃ©gÃ¢ts solides. Sa rotation est centrÃ©e sur la gÃ©nÃ©ration et l'utilisation de Shards of Ice pour dÃ©clencher Glacial Spike, son sort le plus dÃ©vastateur. Givre excelle particuliÃ¨rement en donjons Mythique+ grÃ¢ce Ã  ses nombreuses capacitÃ©s de contrÃ´le et ses dÃ©gÃ¢ts en zone constants.</p>
+    </div>
+  </div>
+
+  <!-- Warlock -->
+  <div id="cls-warlock" class="cls-panel" style="display:none">
+    <div class="spec-block" style="border-left:4px solid #9482C9">
+      <h3 style="color:#9482C9">Affliction (DPS)</h3>
+      <p>Le DÃ©moniste Affliction est le maÃ®tre des malÃ©dictions et des sorts de dÃ©tresse, infligeant des dÃ©gÃ¢ts progressifs sur la durÃ©e Ã  travers une multitude de DoTs. Sa rotation complexe implique le maintien permanent d'Agonie, Corruption et InstabilitÃ© de l'Ãme, tout en gÃ©rant l'Ãnergie de l'Ãme pour des Drain Ãme optimaux. Affliction excelle dans les combats multi-cibles et les rencontres de longue durÃ©e.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #9482C9">
+      <h3 style="color:#9482C9">DÃ©monologie (DPS)</h3>
+      <p>Le DÃ©moniste DÃ©monologie commande une armÃ©e de dÃ©mons pour Ã©craser ses ennemis. Sa rotation unique repose sur l'invocation et la gestion de dÃ©mons de plus en plus puissants, culminant avec l'appel du Seigneur des DÃ©mons. DÃ©monologie offre une excellente performance en burst grÃ¢ce Ã  l'empilement de dÃ©mons, avec une courbe d'apprentissage modÃ©rÃ©e et un gameplay visuellement spectaculaire.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #9482C9">
+      <h3 style="color:#9482C9">Destruction (DPS)</h3>
+      <p>Le DÃ©moniste Destruction est un artiste de la destruction explosive, maniant le feu dÃ©moniaque et les dÃ©flagrations chaotiques. Sa rotation se concentre sur la gÃ©nÃ©ration d'Ãclats de l'Ãme via Incinerate et leur consommation explosive avec Conflagrate et Chaos Bolt. Destruction est rÃ©putÃ© pour ses pics de dÃ©gÃ¢ts considÃ©rables et son excellente performance en combat de boss unique.</p>
+    </div>
+  </div>
+
+  <!-- Monk -->
+  <div id="cls-monk" class="cls-panel" style="display:none">
+    <div class="spec-block" style="border-left:4px solid #00FF96">
+      <h3 style="color:#00FF96">Brasseur (Tank)</h3>
+      <p>Le Moine Brasseur est un tank unique qui repose sur l'esquive et l'absorption diffÃ©rÃ©e des dÃ©gÃ¢ts plutÃ´t que sur la mitigation directe. Son systÃ¨me de Stagger Ã©tale les dÃ©gÃ¢ts reÃ§us dans le temps, lui permettant de se soigner progressivement. Sa rotation implique la gestion de l'Ãnergie Chi et des cooldowns de purification, offrant un gameplay actif et engageant pour les joueurs qui apprÃ©cient un style de tank dynamique.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #00FF96">
+      <h3 style="color:#00FF96">Tissevent (Heal)</h3>
+      <p>Le Moine Tissevent est un soigneur mobile et dynamique qui s'appuie sur une combinaison unique de soins directs et de soins en zone pour maintenir son groupe en vie. Sa rotation hybride alterne entre les sorts Ã  distance et le corps Ã  corps, oÃ¹ Vivify et Renewing Mist forment l'Ã©pine dorsale de ses soins. Tissevent excelle dans les environnements de haute intensitÃ© grÃ¢ce Ã  sa mobilitÃ© exceptionnelle.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #00FF96">
+      <h3 style="color:#00FF96">Marche-Vent (DPS)</h3>
+      <p>Le Moine Marche-Vent est un combattant au corps Ã  corps d'une rapiditÃ© et d'une fluiditÃ© remarquables. Sa rotation exploite les synergies entre ses nombreuses capacitÃ©s, gÃ©nÃ©rant et dÃ©pensant du Chi pour maximiser ses dÃ©gÃ¢ts. Marche-Vent est trÃ¨s apprÃ©ciÃ© pour son excellent scaling en multi-cibles via Spinning Crane Kick et ses nombreuses capacitÃ©s dÃ©fensives personnelles.</p>
+    </div>
+  </div>
+
+  <!-- Druid -->
+  <div id="cls-druid" class="cls-panel" style="display:none">
+    <div class="spec-block" style="border-left:4px solid #FF7D0A">
+      <h3 style="color:#FF7D0A">Ãquilibre (DPS)</h3>
+      <p>Le Druide Ãquilibre est un lanceur de sorts Ã  distance qui alterne entre les Ã©nergies lunaire et solaire. Sa rotation complexe s'articule autour de la gestion de l'Ãclipse, un mÃ©canisme qui amplifie alternativement Starsurge (Lune) et Starfall (Soleil). Ãquilibre offre d'excellentes performances en zone grÃ¢ce Ã  Starfall et brille particuliÃ¨rement dans les donjons Mythique+ Ã  fort trafic ennemi.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #FF7D0A">
+      <h3 style="color:#FF7D0A">Farouche (DPS MÃªlÃ©e)</h3>
+      <p>Le Druide Farouche est un fÃ©lin furtif infligeant des dÃ©gÃ¢ts dÃ©vastateurs grÃ¢ce Ã  ses griffes acÃ©rÃ©es et ses saignements persistants. Sa rotation complexe implique la gestion des Points Combo, des ProcÃ©dures de PrÃ©dateur et de plusieurs DoTs simultanÃ©s (Rake, Rip). Farouche est une des spÃ©cialisations les plus complexes du jeu, rÃ©compensant gÃ©nÃ©reusement la maÃ®trise technique avec des dÃ©gÃ¢ts compÃ©titifs.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #FF7D0A">
+      <h3 style="color:#FF7D0A">Gardien (Tank)</h3>
+      <p>Le Druide Gardien se transforme en ours massif pour absorber des quantitÃ©s astronomiques de dÃ©gÃ¢ts. Son gameplay repose sur la gestion de la Rage et des cooldowns de mitigation comme Barkskin et Survival Instincts. Gardien est rÃ©putÃ© pour ses points de vie Ã©levÃ©s et sa robustesse exceptionnelle, en faisant un choix solide pour les joueurs qui dÃ©butent dans le rÃ´le de tank.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #FF7D0A">
+      <h3 style="color:#FF7D0A">Restauration (Heal)</h3>
+      <p>Le Druide Restauration est un soigneur spÃ©cialisÃ© dans les soins Ã  retardement (HoTs), appliquant une multitude d'effets de guÃ©rison continus sur ses alliÃ©s. Sa rotation prÃ©ventive repose sur le maintien de Rejuvenation, Wild Growth et Lifebloom, anticipant les dÃ©gÃ¢ts avant qu'ils surviennent. Restauration excelle en raid grÃ¢ce Ã  ses HoTs qui soignent passivement sans interrompre les dÃ©placements.</p>
+    </div>
+  </div>
+
+  <!-- Demon Hunter -->
+  <div id="cls-demonhunter" class="cls-panel" style="display:none">
+    <div class="spec-block" style="border-left:4px solid #A330C9">
+      <h3 style="color:#A330C9">DÃ©vastation (DPS)</h3>
+      <p>Le Chasseur de DÃ©mons DÃ©vastation est un combattant au corps Ã  corps extrÃªmement mobile qui utilise sa vitesse et ses acrobaties pour dÃ©chirer ses ennemis. Sa rotation dynamique tourne autour de la gestion du Furie et des cooldowns comme Metamorphose. DÃ©vastation est la spÃ©cialisation la plus accessible de la classe, offrant un gameplay fluide et spectaculaire avec d'excellentes performances en burst.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #A330C9">
+      <h3 style="color:#A330C9">Vengeance (Tank)</h3>
+      <p>Le Chasseur de DÃ©mons Vengeance est un tank unique qui se nourrit de la souffrance pour se renforcer. Sa mÃ©canique de Soul Fragments lui permet d'absorber l'essence de ses ennemis vaincus pour se soigner et augmenter ses dÃ©fenses. Vengeance offre un gameplay trÃ¨s actif avec d'excellentes capacitÃ©s d'auto-soin, en faisant l'un des tanks les plus autonomes du jeu.</p>
+    </div>
+  </div>
+
+  <!-- Death Knight -->
+  <div id="cls-deathknight" class="cls-panel" style="display:none">
+    <div class="spec-block" style="border-left:4px solid #C41F3B">
+      <h3 style="color:#C41F3B">Sang (Tank)</h3>
+      <p>Le Chevalier de la Mort Sang est un tank rÃ©actif axÃ© sur l'auto-sustain, la gestion de la Puissance Runique et les diffÃ©rents cooldowns de soins. Le guide met en avant son style de jeu rÃ©actif, avec Death Strike comme principal outil de survie. Les changements du patch simplifient les mÃ©caniques pour plus de clartÃ©, avec des recommandations sur les statistiques optimales, les professions et les choix de race pour maximiser les performances.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #C41F3B">
+      <h3 style="color:#C41F3B">Givre (DPS)</h3>
+      <p>Le Death Knight Frost pour la Saison 1 de Midnight offre de solides dÃ©gÃ¢ts en cleave et une rotation simple Ã  prendre en main. Ses points faibles incluent une vulnÃ©rabilitÃ© aux temps d'arrÃªt et des dÃ©gÃ¢ts limitÃ©s sur une cible unique. Les prioritÃ©s de statistiques mettent l'accent sur le Coup Critique, la MaÃ®trise, la HÃ¢te et la Polyvalence, avec des recommandations pour le meilleur Ã©quipement disponible.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #C41F3B">
+      <h3 style="color:#C41F3B">Impie (DPS)</h3>
+      <p>Le Chevalier de la Mort Impie dÃ©taille les Ã©lÃ©ments clÃ©s pour maÃ®triser cette spÃ©cialisation dans le contenu JcE. Il comprend des sections sur les Builds de Talents, la Rotation, l'Ãquipement IdÃ©al et les Consommables. Le guide couvre des styles de jeu hybrides centrÃ©s sur l'application des maladies et la gestion des familiers, en mettant l'accent sur un fort potentiel de dÃ©gÃ¢ts en rafale et un excellent contrÃ´le de zone.</p>
+    </div>
+  </div>
+
+  <!-- Evoker -->
+  <div id="cls-evoker" class="cls-panel" style="display:none">
+    <div class="spec-block" style="border-left:4px solid #33937F">
+      <h3 style="color:#33937F">DÃ©vastation (DPS)</h3>
+      <p>L'Ãvocateur DÃ©vastation est un lanceur de sorts Ã  mi-portÃ©e unique qui exploite les souffles draconiques et les Ã©nergies Ã©lÃ©mentaires. Sa mÃ©canique d'empower permet de charger ses sorts pour dÃ©cupler leur puissance. La rotation se concentre sur la gestion des Ãtincelles d'Essence et l'optimisation des sorts empowered comme Pyre et Eternity Surge, offrant un gameplay distinctif parmi les classes Ã  distance.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #33937F">
+      <h3 style="color:#33937F">PrÃ©servation (Heal)</h3>
+      <p>L'Ãvocateur PrÃ©servation est un soigneur unique Ã  mi-portÃ©e qui combine des souffles de guÃ©rison et des sorts temporels pour maintenir ses alliÃ©s en vie. Ses sorts d'empower comme Spiritbloom et Dream Flight offrent des soins massifs en zone lorsqu'ils sont pleinement chargÃ©s. PrÃ©servation excelle dans les situations de dÃ©gÃ¢ts de groupe importants grÃ¢ce Ã  ses capacitÃ©s de remontÃ©e en vie spectaculaires.</p>
+    </div>
+    <div class="spec-block" style="border-left:4px solid #33937F">
+      <h3 style="color:#33937F">Augmentation (Support DPS)</h3>
+      <p>L'Ãvocateur Augmentation est une spÃ©cialisation de support unique qui amplifie les capacitÃ©s de ses alliÃ©s plutÃ´t que d'infliger directement des dÃ©gÃ¢ts. En renforÃ§ant les attaques et capacitÃ©s de ses coÃ©quipiers, Augmentation contribue massivement aux dÃ©gÃ¢ts globaux du groupe. Son rÃ´le hybride DPS/Support en fait l'une des spÃ©cialisations les plus innovantes de Midnight, rÃ©compensant la coordination d'Ã©quipe.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DONJONS TAB -->
+<section id="dnj">
+  <h2 class="section-title">Donjons Mythique+ â Saison 1 Midnight</h2>
+  <div class="grid2">
+    <div class="card" style="border-left:4px solid #7c3aed">
+      <h3 style="color:#a78bfa">Windrunner Spire</h3>
+      <p>Forteresse emblÃ©matique du clan Windrunner, ce donjon prÃ©sente des dÃ©fis complexes mÃªlant mÃ©canique d'Ã©lite et ennemis volants. IdÃ©al pour les Ã©quipes maÃ®trisant le contrÃ´le de zone, Windrunner Spire est situÃ© dans le quartier de Quel'Thalas restaurÃ©. Les boss incluent Sylvanas's Echo et le Gardien de la Tour, nÃ©cessitant une coordination prÃ©cise des interruptions.</p>
+    </div>
+    <div class="card" style="border-left:4px solid #7c3aed">
+      <h3 style="color:#a78bfa">Magister's Terrace</h3>
+      <p>La terrasse des magisters de Quel'Thalas, rÃ©amÃ©nagÃ©e pour Midnight, propose des rencontres magiques intenses avec des sorts Ã  interrompre en prioritÃ©. Ce donjon emblÃ©matique revient avec de nouveaux boss et mÃ©caniques adaptÃ©es au niveau Mythique+, incluant des phases de dispel critiques et des zones de danger arcanique.</p>
+    </div>
+    <div class="card" style="border-left:4px solid #7c3aed">
+      <h3 style="color:#a78bfa">Murder Row</h3>
+      <p>Le quartier sombre de Silvermoon City transformÃ© en donjon, oÃ¹ rues glissantes et embuscades sont lÃ©gion. Murder Row met l'accent sur le contrÃ´le des packs et la gestion des ennemis furtifs. Plusieurs boss utilisent des mÃ©caniques de dissimulation nÃ©cessitant des capacitÃ©s de rÃ©vÃ©lation ou de dÃ©tection des groupes.</p>
+    </div>
+    <div class="card" style="border-left:4px solid #7c3aed">
+      <h3 style="color:#a78bfa">Den of Nalorakk</h3>
+      <p>Le repaire de l'ancien seigneur troll Nalorakk dans les jungles de Zul'Aman. Ce donjon propose des rencontres brutales avec des ennemis tribaux, des totems Ã  dÃ©truire et des boss alternant entre formes humanoÃ¯de et bestiale. Les mÃ©caniques de transformation de Nalorakk exigent une gestion rapide du positionnement du groupe.</p>
+    </div>
+    <div class="card" style="border-left:4px solid #7c3aed">
+      <h3 style="color:#a78bfa">Maisara Caverns</h3>
+      <p>Cavernes mystÃ©rieuses situÃ©es dans les profondeurs de Zul'Aman, abritant d'anciens rituels trolls et des crÃ©atures des abysses. Ce donjon labyrinthique propose des chemins alternatifs selon les choix tactiques du groupe, avec des boss utilisant des malÃ©dictions de zone et des invocations massives nÃ©cessitant des interruptions coordonnÃ©es.</p>
+    </div>
+    <div class="card" style="border-left:4px solid #7c3aed">
+      <h3 style="color:#a78bfa">The Blinding Vale</h3>
+      <p>Une vallÃ©e engloutie dans les tÃ©nÃ¨bres du Vide, oÃ¹ la visibilitÃ© rÃ©duite ajoute une couche de difficultÃ© tactique. The Blinding Vale dans les terres de Harandar propose des rencontres oÃ¹ la gestion des zones obscurcies est primordiale, avec des boss utilisant la lumiÃ¨re et l'obscuritÃ© comme mÃ©caniques centrales.</p>
+    </div>
+    <div class="card" style="border-left:4px solid #7c3aed">
+      <h3 style="color:#a78bfa">Nexus Point Xenas</h3>
+      <p>Point de convergence dimensionnel dans la rÃ©gion du Voidstorm, oÃ¹ la rÃ©alitÃ© se dÃ©chire entre plusieurs plans d'existence. Ce donjon futuriste propose des mÃ©caniques de portail et de dÃ©placement interdimensionnel uniques. Les boss utilisent des instabilitÃ©s de phase nÃ©cessitant que le groupe se divise ou se regroupe selon le plan d'existence actif.</p>
+    </div>
+    <div class="card" style="border-left:4px solid #7c3aed">
+      <h3 style="color:#a78bfa">Voidscar Arena</h3>
+      <p>ArÃ¨ne corrompue par les Ã©nergies du Vide dans la rÃ©gion du Voidstorm, oÃ¹ d'anciens combattants sont piÃ©gÃ©s dans une boucle Ã©ternelle. Les rencontres d'arÃ¨ne proposent des vagues d'ennemis progressives et des boss Ã  phases multiples. La mÃ©canique centrale implique la gestion des empilements de corruption du Vide affectant le groupe.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RAIDS TAB -->
+<section id="raid">
+  <h2 class="section-title">Raids â Saison 1 Midnight</h2>
+  <div class="card" style="border-left:4px solid #dc2626">
+    <h3 style="color:#f87171">The Voidspire</h3>
+    <p>The Voidspire est l'un des trois raids proposÃ©s lors de la premiÃ¨re saison de l'extension Midnight. Cette flÃ¨che corrompue par le Vide s'Ã©tend au-dessus de Quel'Thalas, proposant plusieurs boss dont les mÃ©caniques exploitent les Ã©nergies du Vide. Disponible en Normal, HÃ©roÃ¯que, Mythique et Raid Finder. Mise Ã  jour : 12/03/2026. Le raid comprend des rencontres contre des entitÃ©s du Vide qui ont infiltrÃ© Quel'Thalas lors de l'attaque de Minuit.</p>
+  </div>
+  <div class="card" style="border-left:4px solid #dc2626">
+    <h3 style="color:#f87171">The Dreamrift</h3>
+    <p>The Dreamrift est un raid Ã  un seul boss prÃ©sentÃ© dans la premiÃ¨re saison de l'extension Midnight. Cette fissure entre le monde des rÃªves et la rÃ©alitÃ© propose une rencontre Ã©pique unique avec le gardien du Songe. Mise Ã  jour : 18/03/2026. Disponible en Normal, HÃ©roÃ¯que, Mythique et Raid Finder. The Dreamrift reprÃ©sente la corruption de l'Ãmeraude par les forces de Minuit et offre un boss Ã  phases multiples mÃ©morables.</p>
+  </div>
+  <div class="card" style="border-left:4px solid #dc2626">
+    <h3 style="color:#f87171">March on Quel'Danas</h3>
+    <p>March on Quel'Danas est un raid composÃ© de deux boss, introduit lors de la premiÃ¨re saison de l'extension Midnight. Ce raid final de la Saison 1 est disponible depuis le 1er avril 2026. Les deux boss (Belo'ren et Midnight Falls) reprÃ©sentent le climax de la menace de Minuit sur Quel'Thalas. Mise Ã  jour : 12/03/2026. Ce raid conclut l'arc narratif principal de la Saison 1 avec des rencontres spectaculaires sur l'Ã®le de Quel'Danas.</p>
+  </div>
+</section>
+
+<!-- MIDNIGHT / OTHER TAB -->
+<section id="other">
+  <h2 class="section-title">WoW: Midnight â Guides & Lore</h2>
+  <div class="card" style="border-left:4px solid #0891b2">
+    <h3 style="color:#67e8f9">Vue d'ensemble de l'Extension</h3>
+    <p>Midnight est la nouvelle extension de World of Warcraft (Patch 12.0.1), se dÃ©roulant Ã  Quel'Thalas et dans les rÃ©gions environnantes. L'extension introduit le Logement des Joueurs, une nouvelle spÃ©cialisation pour le Chasseur de DÃ©mons (DÃ©voreur), et un scÃ©nario centrÃ© sur l'attaque de la mystÃ©rieuse entitÃ© Minuit contre les elfes du Sang. La Saison 1 propose 8 donjons Mythique+, 3 raids et un systÃ¨me de paliers compÃ©titif.</p>
+  </div>
+  <div class="card" style="border-left:4px solid #0891b2">
+    <h3 style="color:#67e8f9">Lore & Histoire</h3>
+    <p>Le lore de Midnight explore l'histoire profonde de Quel'Thalas et des elfes du Sang face Ã  une menace sans prÃ©cÃ©dent. L'entitÃ© Minuit, d'origine mystÃ©rieuse, cherche Ã  plonger le monde dans l'obscuritÃ© Ã©ternelle. Des personnages emblÃ©matiques comme Lor'themar Theron et Liadrin jouent des rÃ´les centraux dans la rÃ©sistance. Le compendium de lore couvre les Ã©vÃ©nements prÃ©cÃ©dant Midnight, les factions impliquÃ©es et les rÃ©vÃ©lations sur la nature vÃ©ritable de l'antagoniste.</p>
+  </div>
+  <div class="card" style="border-left:4px solid #0891b2">
+    <h3 style="color:#67e8f9">Chasseur de DÃ©mons : DÃ©voreur</h3>
+    <p>Le DÃ©voreur est la nouvelle spÃ©cialisation du Chasseur de DÃ©mons introduite dans Midnight. Cette spec DPS unique se concentre sur l'absorption et la redistribution des Ã©nergies dÃ©moniaques pour amplifier ses attaques. Le DÃ©voreur peut consommer les essences ennemies pour alimenter des capacitÃ©s dÃ©vastatrices, offrant un gameplay distinctif qui complÃ¨te les spÃ©cialisations DÃ©vastation et Vengeance existantes.</p>
+  </div>
+  <div class="card" style="border-left:4px solid #0891b2">
+    <h3 style="color:#67e8f9">Apex PrÃ©dateur</h3>
+    <p>L'Apex PrÃ©dateur est un systÃ¨me de talents avancÃ© introduit dans Midnight permettant aux joueurs de personnaliser davantage leurs builds. Ces talents de sommet de l'arbre offrent des bonus de puissance considÃ©rables mais nÃ©cessitent des investissements importants dans l'arbre de talents. Le guide des Apex Talents couvre les meilleures configurations pour chaque spÃ©cialisation en Saison 1.</p>
+  </div>
+  <div class="card" style="border-left:4px solid #0891b2">
+    <h3 style="color:#67e8f9">La Proie</h3>
+    <p>Dans la mythologie de Midnight, La Proie dÃ©signe les hÃ©ros qui ont Ã©tÃ© marquÃ©s par l'entitÃ© Minuit et chassÃ©s par ses serviteurs. Ce systÃ¨me narratif influence certaines mÃ©caniques de jeu en monde ouvert et dans des quÃªtes spÃ©cifiques. Les joueurs marquÃ©s peuvent dÃ©clencher des Ã©vÃ©nements spÃ©ciaux et accÃ©der Ã  des rÃ©compenses uniques en survenant Ã  leurs poursuivants.</p>
+  </div>
+  <div class="card" style="border-left:4px solid #0891b2">
+    <h3 style="color:#67e8f9">Saison 1 â Vue d'ensemble</h3>
+    <p>La Saison 1 de Midnight a dÃ©butÃ© le 18 mars 2026 avec l'ouverture des raids Normal et HÃ©roÃ¯que. Le 25 mars, les difficultÃ©s Mythiques et Mythique+ ont ouvert, lanÃ§ant la course au World First. Le 1er avril, March on Quel'Danas a complÃ©tÃ© le lineup de raids. La saison propose des ensembles de paliers pour toutes les classes, un systÃ¨me de donjons Mythique+ renouvelÃ© et une progression de personnage repensÃ©e.</p>
+  </div>
+  <div class="card" style="border-left:4px solid #0891b2">
+    <h3 style="color:#67e8f9">Paliers & RÃ©compenses</h3>
+    <p>Les paliers de la Saison 1 de Midnight offrent des ensembles visuellement spectaculaires inspirÃ©s de l'esthÃ©tique de Quel'Thalas et du Vide. Chaque classe possÃ¨de un ensemble Ã  4 ou 5 piÃ¨ces avec des bonus de set puissants qui redÃ©finissent les rotations optimales. Les paliers s'obtiennent via les raids, les donjons Mythique+ et le PvP, avec un systÃ¨me de conversion entre les sources.</p>
+  </div>
+</section>
+
+<!-- NEWS TAB -->
+<section id="news">
+  <h2 class="section-title">ActualitÃ©s WoW: Midnight</h2>
+  <div class="card" style="border-left:4px solid #f59e0b">
+    <div class="news-meta">
+      <h3 style="color:#fcd34d">DisponibilitÃ© de March on Quel'Danas le 1er avril</h3>
+      <span class="news-date">2026-04-01</span>
+    </div>
+    <p>Le raid final de la Saison 1 avec 2 boss (Belo'ren et Midnight Falls) est dÃ©sormais accessible. Ajustements de classes supplÃ©mentaires basÃ©s sur les donnÃ©es mythiques.</p>
+    <a href="https://www.wowhead.com/guide/midnight/raids/march-on-quel-dans-overview-location-rewards-bosses" target="_blank" class="src-link">Lire sur Wowhead â</a>
+  </div>
+  <div class="card" style="border-left:4px solid #f59e0b">
+    <div class="news-meta">
+      <h3 style="color:#fcd34d">Ouverture des Raids Mythiques et M+ le 25 mars</h3>
+      <span class="news-date">2026-03-25</span>
+    </div>
+    <p>DÃ©blocage des difficultÃ©s supÃ©rieures pour les 3 raids (The Voidspire, The Dreamrift, March on Quel'Danas) et les 8 donjons Mythique+. La course au World First commence.</p>
+    <a href="https://www.wowhead.com/guide/midnight/season-1-overview-dungeons-raids-dates" target="_blank" class="src-link">Lire sur Wowhead â</a>
+  </div>
+  <div class="card" style="border-left:4px solid #f59e0b">
+    <div class="news-meta">
+      <h3 style="color:#fcd34d">Twitch Drops : Cuddly Void Grrgle</h3>
+      <span class="news-date">2026-03-20</span>
+    </div>
+    <p>Nouveau Twitch Drop prÃ©vu le 26 mars offrant un objet de dÃ©coration de maison exclusif : Cuddly Void Grrgle. Regardez des streams WoW pour l'obtenir.</p>
+    <a href="https://www.wowhead.com/news/twitch-drops-cuddly-void-grrgle" target="_blank" class="src-link">Lire sur Wowhead â</a>
+  </div>
+  <div class="card" style="border-left:4px solid #f59e0b">
+    <div class="news-meta">
+      <h3 style="color:#fcd34d">Retour des Soigneurs sur les Auras PrivÃ©es</h3>
+      <span class="news-date">2026-03-20</span>
+    </div>
+    <p>Les soigneurs critiquent la visibilitÃ© des debuffs dispellables Ã  cause du systÃ¨me Private Auras dans les nouveaux raids. Blizzard Ã©tudie des ajustements pour amÃ©liorer la lisibilitÃ© en combat.</p>
+    <a href="https://www.wowhead.com/news/private-auras-healer-feedback" target="_blank" class="src-link">Lire sur Wowhead â</a>
+  </div>
+  <div class="card" style="border-left:4px solid #f59e0b">
+    <div class="news-meta">
+      <h3 style="color:#fcd34d">Hotfixes Midnight du 19 mars</h3>
+      <span class="news-date">2026-03-19</span>
+    </div>
+    <p>Corrections importantes incluant des ajustements d'Ã©quilibrage des classes, corrections de bugs dans les raids The Voidspire et The Dreamrift, et amÃ©liorations de stabilitÃ© du serveur.</p>
+    <a href="https://www.wowhead.com/blue-tracker" target="_blank" class="src-link">Lire sur Wowhead Blue Tracker â</a>
+  </div>
+  <div class="card" style="border-left:4px solid #f59e0b">
+    <div class="news-meta">
+      <h3 style="color:#fcd34d">Hall of Fame des Nemesis de Gouffres</h3>
+      <span class="news-date">2026-03-19</span>
+    </div>
+    <p>Le Hall of Fame des Nemesis de Gouffres est maintenant disponible. Les meilleurs joueurs du monde dans les Gouffres ont Ã©tÃ© rÃ©compensÃ©s pour leurs performances exceptionnelles en Saison 1.</p>
+    <a href="https://www.wowhead.com/news/delve-nemesis-hall-of-fame" target="_blank" class="src-link">Lire sur Wowhead â</a>
+  </div>
+  <div class="card" style="border-left:4px solid #f59e0b">
+    <div class="news-meta">
+      <h3 style="color:#fcd34d">Ajustements de classes â Semaine 1</h3>
+      <span class="news-date">2026-03-18</span>
+    </div>
+    <p>Premiers ajustements de classes post-lancement basÃ©s sur les donnÃ©es hÃ©roÃ¯ques. Plusieurs spÃ©cialisations ont reÃ§u des buffs et nerfs ciblÃ©s pour Ã©quilibrer le contenu de la Saison 1.</p>
+    <a href="https://news.blizzard.com/fr-fr/article/24243864/ajustement-des-classes-mises-a-jour-et-ce-qui-vous-attend-dans-midnight" target="_blank" class="src-link">Lire sur Blizzard â</a>
+  </div>
+  <div class="card" style="border-left:4px solid #f59e0b">
+    <div class="news-meta">
+      <h3 style="color:#fcd34d">Lancement de la Saison 1 de Midnight</h3>
+      <span class="news-date">2026-03-18</span>
+    </div>
+    <p>Ouverture officielle de la Saison 1 avec les premiers ajustements de classes basÃ©s sur les donnÃ©es hÃ©roÃ¯ques. Les raids The Voidspire et The Dreamrift sont disponibles en Normal, HÃ©roÃ¯que et Raid Finder.</p>
+    <a href="https://news.blizzard.com/fr-fr/article/24243864/ajustement-des-classes-mises-a-jour-et-ce-qui-vous-attend-dans-midnight" target="_blank" class="src-link">Lire sur Blizzard â</a>
+  </div>
+  <div class="card" style="border-left:4px solid #f59e0b">
+    <div class="news-meta">
+      <h3 style="color:#fcd34d">Soldes du Printemps â Boutique Blizzard</h3>
+      <span class="news-date">2026-03-17</span>
+    </div>
+    <p>Les Soldes du Printemps sont de retour sur la Boutique Blizzard avec des rÃ©ductions sur les montures, compagnons et services. Promotion valable jusqu'au 31 mars 2026.</p>
+    <a href="https://www.wowhead.com/news/spring-sale-blizzard-shop" target="_blank" class="src-link">Lire sur Wowhead â</a>
+  </div>
+  <div class="card" style="border-left:4px solid #f59e0b">
+    <div class="news-meta">
+      <h3 style="color:#fcd34d">Preview des Sets de Paliers Saison 1</h3>
+      <span class="news-date">2026-03-15</span>
+    </div>
+    <p>Blizzard a rÃ©vÃ©lÃ© les designs finaux des ensembles de paliers de la Saison 1 de Midnight pour toutes les classes. Les sets prÃ©sentent une esthÃ©tique mÃªlant thÃ¨mes de Quel'Thalas et du Vide avec des effets visuels spectaculaires.</p>
+    <a href="https://www.wowhead.com/news/tier-set-preview-season-1" target="_blank" class="src-link">Lire sur Wowhead â</a>
+  </div>
+</section>
+
+<footer>
+  <p>WoW: Midnight Hub FR â Guides Communautaires â¢ Mis Ã  jour automatiquement â¢ Vendredi 20 mars 2026</p>
+  <p style="margin-top:6px">World of Warcraft est une marque dÃ©posÃ©e de Blizzard Entertainment, Inc.</p>
+</footer>
+
 <script>
-function T(id,el){try{var s=document.querySelectorAll('section');for(var i=0;i<s.length;i++)s[i].className='';document.getElementById(id).className='on';var n=document.querySelectorAll('nav span');for(var i=0;i<n.length;i++)n[i].className='';if(el)el.className='on';}catch(e){}}
-function OC(s){try{document.getElementById('cg').style.display='none';document.getElementById('p-'+s).className='panel on';}catch(e){}}
-function XC(s){try{document.getElementById('p-'+s).className='panel';document.getElementById('cg').style.display='';}catch(e){}}
-function SS(c,s,el){try{var p=document.getElementById('p-'+c);var g=p.querySelectorAll('.guide');for(var i=0;i<g.length;i++)g[i].className='guide';document.getElementById('g-'+c+'-'+s).className='guide on';var t=p.querySelectorAll('.tabs span');for(var i=0;i<t.length;i++)t[i].className='';if(el)el.className='on';}catch(e){}}
+try {
+  function showTab(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('on'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    var sec = document.getElementById(id);
+    if (sec) sec.classList.add('on');
+    var btns = document.querySelectorAll('nav button');
+    var order = ['cls','dnj','raid','other','news'];
+    var idx = order.indexOf(id);
+    if (idx >= 0 && btns[idx]) btns[idx].classList.add('active');
+  }
+
+  function showCls(id) {
+    document.querySelectorAll('.cls-panel').forEach(p => p.style.display = 'none');
+    document.querySelectorAll('.cls-btn').forEach(b => b.classList.remove('active'));
+    var panel = document.getElementById('cls-' + id);
+    if (panel) panel.style.display = 'block';
+    var btns = document.querySelectorAll('.cls-btn');
+    var names = ['warrior','paladin','hunter','rogue','priest','shaman','mage','warlock','monk','druid','demonhunter','deathknight','evoker'];
+    var idx = names.indexOf(id);
+    if (idx >= 0 && btns[idx]) btns[idx].classList.add('active');
+  }
+} catch(e) { console.error(e); }
 </script>
 </body>
 </html>
